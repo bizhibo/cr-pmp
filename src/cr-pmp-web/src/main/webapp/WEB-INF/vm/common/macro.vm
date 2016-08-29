@@ -1,0 +1,154 @@
+#macro (showPage $module $page)
+    #if($page)
+<table width="100%">
+<tr>
+	<td style="float:left;" valign="middle">
+		共有 $!page.totalItem 条记录 $!page.index/$!{page.totalPage}页
+	</td>
+	<td style="float:right;">
+		<ul class="pagination">
+        #if($page.previousPageAvailable) ##如果能向上翻页
+			#set($pagePos = 1) ##当前页的尾巴长度
+			<li>
+              <a href="$module.addQueryData("page",1).render()" aria-label="Previous">
+                <span aria-hidden="true">第一页</span>
+              </a>
+    		</li>
+    		<li>
+              <a href="$module.addQueryData("page",$!{page.previousPage}).render()" aria-label="Previous">
+                <span aria-hidden="true">上一页</span>
+              </a>
+    		</li>
+		#else
+			#set($pagePos = 2) ##当前页的尾巴长度
+			<li class="disabled">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">第一页</span>
+              </a>
+    		</li>
+			<li class="disabled">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">上一页</span>
+              </a>
+    		</li>
+		#end
+		#foreach($i in [$pagePos..1]) ##增加前面的尾巴
+        #if($!page.index - $i > 0)
+            #set($pageIndex= $!page.index - $i)
+		    <li><a href="$module.addQueryData("page",$pageIndex).render()">$pageIndex</a></li>
+        #end
+		#end
+			<li class="active"><a href="#">$!page.index</a></li>##显示当前页号
+        #foreach($i in [1..$pagePos]) ##增加后面的尾巴
+        #if($!page.totalPage - $!page.index - $i >= 0)
+            #set($pageIndex= $!page.index + $!i)
+			 <li><a href="$module.addQueryData("page",$pageIndex).render()">$pageIndex</a></li>
+        #end
+		#end
+		#if($page.nextPageAvailable) ##显示后面的页
+		 <li>
+          <a href="$module.addQueryData("page",$!{page.nextPage}).render()" aria-label="Next">
+            <span aria-hidden="true">下一页</span>
+          </a>
+		 </li>
+		 <li>
+          <a  href="$module.addQueryData("page",$!{page.totalPage}).render()" aria-label="Next">
+            <span aria-hidden="true">最后一页</span>
+          </a>
+		 </li>
+        #else
+         <li class="disabled">
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">下一页</span>
+          </a>
+    	 </li>
+		 <li class="disabled">
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">最后一页</span>
+          </a>
+         </li>
+		#end
+		</ul>
+		</td>
+	</tr>
+</table>
+        $!module.reset() 
+    #end
+#end
+#macro (showAjaxPage $module $page)
+	 #if($page)
+<table width="100%">
+<tr>
+	<td style="float:left;" valign="middle">
+		共有 $!page.totalItem 条记录 $!page.index/$!{page.totalPage}页
+	</td>
+	<td style="float:right;">
+		<ul class="pagination">
+        #if($page.previousPageAvailable) ##如果能向上翻页
+			#set($pagePos = 1) ##当前页的尾巴长度
+			<li>
+              <a href="javascript:void(0);" onclick="selectPage('$module.addQueryData("page",1).render()')" aria-label="Previous">
+                <span aria-hidden="true">第一页</span>
+              </a>
+    		</li>
+			<li>
+              <a href="javascript:void(0);" onclick="selectPage('$module.addQueryData("page",$!{page.previousPage}).render()')" aria-label="Previous">
+                <span aria-hidden="true">上一页</span>
+              </a>
+    		</li>
+		#else
+			#set($pagePos = 2) ##当前页的尾巴长度
+			<li class="disabled">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">第一页</span>
+              </a>
+    		</li>
+			<li class="disabled">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">上一页</span>
+              </a>
+    		</li>
+		#end
+		#foreach($i in [$pagePos..1]) ##增加前面的尾巴
+            #if($!page.index - $i > 0)
+                #set($pageIndex= $!page.index - $i)
+    			<li><a href="javascript:void(0);" onclick="selectPage('$module.addQueryData("page",$pageIndex).render()')">$pageIndex</a></li>
+            #end
+        #end
+            <li class="active"><a href="#">$!page.index</a></li>##显示当前页号
+        #foreach($i in [1..$pagePos]) ##增加后面的尾巴
+            #if($!page.totalPage - $!page.index - $i >= 0)
+                #set($pageIndex= $!page.index + $!i)
+    			<li><a href="javascript:void(0);" onclick="selectPage('$module.addQueryData("page",$pageIndex).render()')">$pageIndex</a></li>
+            #end
+		#end
+		#if($page.nextPageAvailable) ##显示后面的页
+			<li>
+              <a href="javascript:void(0);" onclick="selectPage('$module.addQueryData("page",$!{page.nextPage}).render()')" aria-label="Next">
+                <span aria-hidden="true">下一页</span>
+              </a>
+			</li>
+			<li>
+              <a href="javascript:void(0);"onclick="selectPage('$module.addQueryData("page",$!{page.totalPage}).render()')" aria-label="Next">
+                <span aria-hidden="true">最后一页</span>
+              </a>
+			</li>
+        #else
+              <li class="disabled">
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                  </a>
+        	  </li>
+			  <li class="disabled">
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">最后一页</span>
+                  </a>
+        	  </li>
+		#end
+		</ul>
+	  </td>
+	</tr>
+</table>
+        $!module.reset() 
+    #end
+#end

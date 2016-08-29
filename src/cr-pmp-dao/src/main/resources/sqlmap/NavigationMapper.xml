@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//xml.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.pmp.dao.navigation.NavigationDao">
+
+	<sql id="fields">
+		id,
+		name,
+		level,
+		type,
+		parentId,
+		url,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="tableName">
+		cr_pmp_navigation
+	</sql>
+
+	<insert id="addNav" parameterType="navigation">
+		insert
+		<include refid="tableName" />
+		(name,level,type,parentId,url,createTime,modifyTime)
+		values
+		(#{name},#{level},#{type},#{parentId},#{url},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+</mapper>

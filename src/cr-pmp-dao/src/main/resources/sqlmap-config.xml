@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 指定使用SLF4J记录日志 -->
+		<setting name="logImpl" value="SLF4J" />
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<!-- 实体 -->
+	<typeAliases>
+		<typeAlias alias="user" type="com.cr.pmp.model.user.User" />
+		<typeAlias alias="navigation" type="com.cr.pmp.model.navigation.Navigation" />
+	</typeAliases>
+	<!-- sqlmap 映射器 -->
+	<mappers>
+		<mapper resource="sqlmap/UserMapper.xml"/>
+		<mapper resource="sqlmap/NavigationMapper.xml"/>
+	</mappers>
+</configuration>

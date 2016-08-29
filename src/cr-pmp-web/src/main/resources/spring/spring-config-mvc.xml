@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:default-servlet-handler />
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<ref bean="stringHttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 解决乱码问题 -->
+	<bean id="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<constructor-arg value="UTF-8" index="0" />
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+				<value>text/plain;charset=UTF-8</value>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+		<property name="writeAcceptCharset" value="false" />
+	</bean>
+	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**" /> <bean 
+		class="com.ezt.erp.web.interceptor.LoginInterceptor" /> </mvc:interceptor> 
+		<mvc:interceptor> <mvc:mapping path="/**" /> <bean class="com.ezt.erp.web.interceptor.RuleInterceptor" 
+		/> </mvc:interceptor> </mvc:interceptors> -->
+
+	<!-- 模板信息设置 -->
+	<bean id="velocityConfigurer"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<!-- 设置模板位置 -->
+		<property name="resourceLoaderPath" value="WEB-INF/vm" />
+		<!-- Velocity配置文件 -->
+		<property name="configLocation" value="classpath:velocity.properties" />
+	</bean>
+
+	<!-- 设置视图解析工具 -->
+	<bean id="viewResolver" class="com.cr.pmp.common.view.VelocityViewResolver">
+		<property name="cache" value="false" /><!--是否缓存模板 -->
+		<property name="order" value="10" />
+		<property name="suffix" value=".vm" />
+		<property name="prefix" value="" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="toolAttributes" ref="velocityTools" />
+		<property name="urlAttributes" ref="velocityUrl" />
+	</bean>
+
+	<bean id="velocityTools" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="stringUtils">
+					<bean class="org.apache.commons.lang.StringUtils" />
+				</entry>
+				<entry key="stringEscapeUtils">
+					<bean class="org.apache.commons.lang.StringEscapeUtils" />
+				</entry>
+				<entry key="dateUtils">
+					<bean class="com.cr.pmp.common.utils.DateUtil" />
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="velocityUrl" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- 主域名 -->
+				<entry key="mainModule">
+					<bean class="com.cr.pmp.common.utils.ToolsUrl">
+						<property name="url" value="http://127.0.0.1:8080/" />
+
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="10485760000" />
+		<property name="maxInMemorySize" value="409600000" />
+	</bean>
+</beans>

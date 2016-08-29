@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<properties>
+		<property name="LOG_HOME">C:/soft/Logs/</property>
+		<property name="SERVER_NAME">cr-pmp</property>
+	</properties>
+	<Appenders>
+		<Console name="appender_console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout
+				pattern="[${SERVER_NAME}] %-d{yyyy-MM-dd HH:mm:ss} %p [%t] [%C.%M(%L)] : %m%n" />
+		</Console>
+		<RollingFile name="appender_info_file"
+			fileName="${LOG_HOME}/${SERVER_NAME}-log-info.log" filePattern="${LOG_HOME}/${SERVER_NAME}-log-info-%d{MM.dd.yyyy}.log">
+			<PatternLayout
+				pattern="[${SERVER_NAME}] %-d{yyyy-MM-dd HH:mm:ss} %p [%t] [%C.%M(%L)] : %m%n" />
+			<TimeBasedTriggeringPolicy />
+			<ThresholdFilter level="info" onMatch="ACCEPT" />
+		</RollingFile>
+		<RollingFile name="appender_error_file"
+			fileName="${LOG_HOME}/${SERVER_NAME}-log-error.log" filePattern="${LOG_HOME}/${SERVER_NAME}-log-error-%d{MM.dd.yyyy}.log">
+			<PatternLayout
+				pattern="[${SERVER_NAME}] %-d{yyyy-MM-dd HH:mm:ss} %p [%t] [%C.%M(%L)] : %m%n" />
+			<TimeBasedTriggeringPolicy />
+			<ThresholdFilter level="error" onMatch="ACCEPT" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="appender_console" />
+			<!-- <AppenderRef ref="appender_info_file" /> <AppenderRef ref="appender_error_file" 
+				/> -->
+		</Root>
+		<Logger name="com.ibatis" level="debug" />
+		<Logger name="java.sql.Connection" level="debug" />
+		<Logger name="java.sql.Statement" level="debug" />
+		<Logger name="java.sql.PreparedStatement" level="debug" />
+		<Logger name="java.sql.ResultSet" level="debug" />
+		<logger name="org.springframework.core" level="debug" />
+		<logger name="org.springframework.beans" level="debug" />
+		<logger name="org.springframework.context" level="debug" />
+		<logger name="org.springframework.web" level="debug" />
+		<logger name="org.apache.http" level="warn" />
+		<logger name="com.cr.pmp.*" level="debug" />
+	</Loggers>
+</Configuration>

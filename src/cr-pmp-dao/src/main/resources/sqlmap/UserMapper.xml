@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//xml.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.pmp.dao.user.UserDao">
+
+	<sql id="fields">
+		id,
+		userName,
+		password,
+		name,
+		birthday,
+		sex,
+		deptId,
+		email,
+		phone,
+		position,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="tableName">
+		cr_pmp_user
+	</sql>
+
+	<select id="login" parameterType="java.util.Map" resultType="user">
+		select
+		userName,name,birthday,sex,deptId,email,phone,position
+		from
+		<include refid="tableName" />
+		where userName=#{userName} and password=#{password}
+	</select>
+</mapper>
