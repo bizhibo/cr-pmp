@@ -24,7 +24,7 @@ public class NavigationController extends BaseController {
 
 	@RequestMapping("/index")
 	public Result index() {
-		Result r = new Result("/nav/index");
+		Result r = new Result("/nav/index"); 
 		return r;
 	}
 
