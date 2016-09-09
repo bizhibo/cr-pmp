@@ -44,4 +44,12 @@ public class NavigationController extends BaseController {
 		result.setViewName("/nav/navList");
 		return result;
 	}
+
+	@RequestMapping("/delNav")
+	@ResponseBody
+	public String delNav() {
+		Result result = navigationService.delNav(Integer.valueOf(this
+				.getParams("id").toString()));
+		return result.toJson();
+	}
 }

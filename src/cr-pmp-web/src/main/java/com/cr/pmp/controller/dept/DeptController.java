@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cr.pmp.common.base.BaseController;
 import com.cr.pmp.common.result.Result;
+import com.cr.pmp.model.dept.Dept;
 import com.cr.pmp.service.dept.DeptService;
 
 @Controller
@@ -19,6 +20,45 @@ public class DeptController extends BaseController {
 	@RequestMapping("/index")
 	public Result index() {
 		return new Result("/dept/index");
+	}
+
+	@RequestMapping("/pageList")
+	public Result queryNavList() {
+		Result result = deptService.queryDeptPageList(this.getParams());
+		result.setViewName("/dept/deptList");
+		return result;
+	}
+
+	@RequestMapping("/delDept")
+	@ResponseBody
+	public String delDept() {
+		Result result = deptService.delDept(Integer.valueOf(this
+				.getParams("id").toString()));
+		return result.toJson();
+	}
+
+	@RequestMapping("/updDept")
+	@ResponseBody
+	public String updDept() {
+		Result result = deptService.updDept((Dept) this
+				.getParamsObject(Dept.class));
+		return result.toJson();
+	}
+
+	@RequestMapping("/queryById")
+	@ResponseBody
+	public String queryById() {
+		Result result = deptService.queryById(Integer.valueOf(this.getParams(
+				"id").toString()));
+		return result.toJson();
+	}
+
+	@RequestMapping("/addDept")
+	@ResponseBody
+	public String addDept() {
+		Result result = deptService.addDept((Dept) this
+				.getParamsObject(Dept.class));
+		return result.toJson();
 	}
 
 	@RequestMapping("/getDept")

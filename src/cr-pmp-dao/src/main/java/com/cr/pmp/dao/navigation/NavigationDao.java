@@ -16,4 +16,8 @@ public interface NavigationDao {
 	public List<Navigation> queryListByLevel(Integer level);
 
 	public List<Navigation> queryRootNav();
+
+	public Integer delNav(Integer id);
+
+	public Integer queryCountByPid(Integer pid);
 }

@@ -1,6 +1,8 @@
 package com.cr.pmp.model.dept;
 
-public class Dept {
+import com.cr.pmp.common.base.BaseModel;
+
+public class Dept extends BaseModel {
 
 	private String name;
 	private int parentId;

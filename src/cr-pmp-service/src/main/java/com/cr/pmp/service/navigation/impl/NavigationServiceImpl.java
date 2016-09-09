@@ -1,5 +1,6 @@
 package com.cr.pmp.service.navigation.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +73,29 @@ public class NavigationServiceImpl implements NavigationService {
 				result.setResultCode(false);
 			}
 		} catch (Exception e) {
+			result.setResultCode(false);
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result delNav(Integer id) {
+		Result result = new Result();
+		try {
+			int count = navigationDao.queryCountByPid(id);
+			if (count > 0) {
+				result.setResultCode("EXISTNODE");
+			} else {
+				Integer flag = navigationDao.delNav(id);
+				if (flag > 0) {
+					result.setResultCode(true);
+				} else {
+					result.setResultCode(false);
+				}
+			}
+		} catch (Exception e) {
+			result.setResultCode(false);
 			LogUtils.error(e.getMessage(), e);
 		}
 		return result;

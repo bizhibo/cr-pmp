@@ -9,6 +9,8 @@
 		<result property="type" column="type" />
 		<result property="parentId" column="parentId" />
 		<result property="url" column="url" />
+		<result property="icon" column="icon" />
+		<result property="sequence" column="sequence" />
 		<result property="createTime" column="createTime" />
 		<result property="modifyTime" column="modifyTime" />
 		<association property="navList" column="id" select="queryListByPid" />
@@ -21,6 +23,8 @@
 		type,
 		parentId,
 		url,
+		icon,
+		sequence,
 		createTime,
 		modifyTime
 	</sql>
@@ -43,7 +47,7 @@
 				AND name LIKE CONCAT('%',#{name},'%' )
 			</if>
 		</where>
-		ORDER BY ID DESC LIMIT #{startRow},#{pageSize}
+		ORDER BY level,sequence ASC LIMIT #{startRow},#{pageSize}
 	</select>
 	<select id="queryCount" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
@@ -67,7 +71,7 @@
 		FROM
 		<include refid="tableName" />
 		WHERE level = #{level}
-		ORDER BY ID DESC
+		ORDER BY sequence ASC
 	</select>
 	<select id="queryRootNav" resultMap="navMap">
 		SELECT
@@ -75,7 +79,7 @@
 		FROM
 		<include refid="tableName" />
 		WHERE level=1
-		ORDER BY ID DESC
+		ORDER BY sequence ASC
 	</select>
 	<select id="queryListByPid" parameterType="java.lang.Integer"
 		resultMap="navMap">
@@ -84,17 +88,31 @@
 		FROM
 		<include refid="tableName" />
 		WHERE parentId=#{parentId}
-		ORDER BY ID DESC
+		ORDER BY sequence ASC
+	</select>
+	<select id="queryCountByPid" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT
+		COUNT(id)
+		FROM
+		<include refid="tableName" />
+		WHERE parentId=#{parentId}
 	</select>
 	<insert id="addNav" parameterType="navigation">
 		INSERT
 		<include refid="tableName" />
-		(name,level,type,parentId,url,createTime,modifyTime)
+		(name,level,type,parentId,url,icon,sequence,createTime,modifyTime)
 		VALUES
-		(#{name},#{level},#{type},#{parentId},#{url},now(),now())
+		(#{name},#{level},#{type},#{parentId},#{url},#{icon},#{sequence},now(),now())
 		<selectKey resultType="java.lang.Integer" keyProperty="id"
 			order="AFTER">
 			SELECT @@IDENTITY
 		</selectKey>
 	</insert>
+	<delete id="delNav" parameterType="java.lang.Integer">
+		DELETE
+		FROM
+		<include refid="tableName" />
+		WHERE id=#{id}
+	</delete>
 </mapper>

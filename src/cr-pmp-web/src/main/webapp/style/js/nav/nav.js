@@ -6,26 +6,19 @@ $(function() {
 	var check = $("#addForm").validate({
 		rules : {
 			addName : {
-				required : !0,
+				required : true,
+				maxlength : 10
+			},
+			addIcon : {
+				required : true,
+				maxlength : 10
+			},
+			addSequence : {
+				required : true,
 				maxlength : 10
 			}
 		}
 	});
-	toastr.options = {
-		"closeButton" : true,
-		"debug" : false,
-		"progressBar" : true,
-		"positionClass" : "toast-top-center",
-		"onclick" : null,
-		"showDuration" : "400",
-		"hideDuration" : "1000",
-		"timeOut" : "3000",
-		"extendedTimeOut" : "1000",
-		"showEasing" : "swing",
-		"hideEasing" : "linear",
-		"showMethod" : "fadeIn",
-		"hideMethod" : "fadeOut"
-	};
 	$("input[name=addLevel]").on(
 			"ifChecked",
 			function(event) {
@@ -36,7 +29,7 @@ $(function() {
 						url : "/nav/getNavList.do",
 						type : "post",
 						data : {
-							"level" : level-1
+							"level" : level - 1
 						},
 						dataType : "json",
 						success : function(result) {
@@ -48,13 +41,13 @@ $(function() {
 							$("#addpid").html(op);
 						},
 						error : function() {
-							toastr.warning("系统异常,请联系管理员", "提示");
+							swal("提示", "系统异常,请联系管理员!", "warning");
 							return;
 						}
 					});
 					$("#addpid").attr("disabled", false);
 					$("#addpid").rules("add", {
-							required : true,
+						required : true,
 					});
 				} else {
 					$("#addpid").attr("disabled", true);
@@ -81,12 +74,13 @@ $(function() {
 						+ "&level=" + $("input[name=qlevel]:checked").val();
 				selectPage(url);
 			});
-	$("#qbtn").trigger("click");
 	$("#addbtn").bind("click", function() {
 		if (!check.form()) {
 			return;
 		}
 		var name = $("#addName").val();
+		var icon = $("#addIcon").val();
+		var sequence = $("#addSequence").val();
 		var level = $("input[name=addLevel]:checked").val();
 		var type = $("input[name=addType]:checked").val();
 		var url = "";
@@ -99,6 +93,8 @@ $(function() {
 		}
 		var data = {
 			"name" : name,
+			"icon" : icon,
+			"sequence" : sequence,
 			"level" : level,
 			"type" : type,
 			"url" : url,
@@ -111,21 +107,58 @@ $(function() {
 			dataType : "json",
 			success : function(result) {
 				if (result.resultCode == true) {
-					document.getElementById("addForm").reset(); 
+					document.getElementById("addForm").reset();
 					$("#addclose").trigger("click");
-					toastr.success("添加成功!", "提示");
+					swal("提示", "添加成功！", "success");
 					$("#qbtn").trigger("click");
 				} else {
-					toastr.error("添加失败!", "提示");
+					swal("提示", "添加失败!", "error");
 				}
 			},
 			error : function() {
-				toastr.warning("系统异常,请联系管理员", "提示");
+				swal("提示", "系统异常,请联系管理员!", "warning");
 				return;
 			}
 		});
 	});
+	$("#qbtn").trigger("click");
 });
+function del(id) {
+	swal({
+		title : "您确定要删除这条信息吗",
+		text : "删除后将无法恢复，请谨慎操作！",
+		type : "warning",
+		showCancelButton : true,
+		confirmButtonColor : "#DD6B55",
+		confirmButtonText : "是的，我要删除！",
+		cancelButtonText : "让我再考虑一下",
+		closeOnConfirm : false
+	}, function() {
+		$.ajax({
+			url : "/nav/delNav.do",
+			type : "post",
+			data : {
+				"id" : id
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result.resultCode == "EXISTNODE") {
+					swal("提示", "删除失败！当前菜单下还存在子菜单请先处理。", "error");
+				} else if (result.resultCode == true) {
+					swal("提示", "您已经永久删除了这条信息。", "success");
+					$("#refresh").trigger("click");
+					$("#qbtn").trigger("click");
+				} else {
+					swal("提示", "删除失败！", "error");
+				}
+			},
+			error : function() {
+				swal("提示", "系统异常,请联系管理员!", "warning");
+				return;
+			}
+		});
+	});
+}
 function selectPage(url) {
 	$("#navtb")
 			.html(
@@ -138,7 +171,7 @@ function selectPage(url) {
 			$("#navtb").html(result);
 		},
 		error : function() {
-			toastr.warning("系统异常,请联系管理员", "提示");
+			swal("提示", "系统异常,请联系管理员!", "warning");
 			return;
 		}
 	});

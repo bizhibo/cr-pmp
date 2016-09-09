@@ -5,8 +5,7 @@
 	<resultMap type="com.cr.pmp.model.tree.JsTreeModel" id="treeMap">
 		<result property="id" column="id" />
 		<result property="text" column="text" />
-		<association property="children" column="id" 
-			select="queryListByPid" />
+		<association property="children" column="id" select="queryListByPid" />
 	</resultMap>
 
 	<sql id="fields">
@@ -28,6 +27,9 @@
 		FROM
 		<include refid="tableName" />
 		<where>
+			<if test="parentId!=null">
+				AND parentId=#{parentId}
+			</if>
 			<if test="name!=null and name!=''">
 				AND name LIKE CONCAT('%',#{name},'%' )
 			</if>
@@ -41,6 +43,9 @@
 		FROM
 		<include refid="tableName" />
 		<where>
+			<if test="parentId!=null">
+				AND parentId=#{parentId}
+			</if>
 			<if test="name!=null and name!=''">
 				AND name LIKE CONCAT('%',#{name},'%' )
 			</if>
@@ -48,8 +53,8 @@
 	</select>
 	<select id="queryRootNode" resultMap="treeMap">
 		SELECT
-		id as id,
-		name as text
+		id AS id,
+		name AS text
 		FROM
 		<include refid="tableName" />
 		WHERE parentId=0
@@ -58,8 +63,8 @@
 	<select id="queryListByPid" parameterType="java.lang.Integer"
 		resultMap="treeMap">
 		SELECT
-		id as id,
-		name as text
+		id AS id,
+		name AS text
 		FROM
 		<include refid="tableName" />
 		WHERE parentId=#{parentId}
@@ -76,4 +81,25 @@
 			SELECT @@IDENTITY
 		</selectKey>
 	</insert>
+	<delete id="delDept" parameterType="java.lang.Integer">
+		DELETE
+		FROM
+		<include refid="tableName" />
+		WHERE id=#{id}
+	</delete>
+	<select id="queryById" parameterType="java.lang.Integer"
+		resultType="dept">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		WHERE id=#{id}
+	</select>
+	<update id="updDept" parameterType="dept">
+		UPDATE
+		<include refid="tableName" />
+		SET name=#{name},
+		modifyTime=now()
+		WHERE id=#{id}
+	</update>
 </mapper>

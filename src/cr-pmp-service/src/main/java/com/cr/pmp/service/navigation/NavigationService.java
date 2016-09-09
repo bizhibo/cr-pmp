@@ -12,5 +12,7 @@ public interface NavigationService {
 	public Result queryNavPageList(Map<String, Object> params);
 
 	public Result queryListByLevel(Integer level);
+	
+	public Result delNav(Integer id);
 
 }

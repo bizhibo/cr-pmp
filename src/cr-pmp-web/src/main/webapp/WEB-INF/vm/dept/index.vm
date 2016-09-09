@@ -7,9 +7,9 @@
         <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="/style/css/plugins/jsTree/style.min.css" rel="stylesheet"/>
-        <link href="/style/css/plugins/toastr/toastr.min.css" rel="stylesheet"/>
         <link href="/style/css/animate.min.css" rel="stylesheet"/>
         <link href="/style/css/style.min.css" rel="stylesheet"/>
+		<link href="/style/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
@@ -32,14 +32,16 @@
                         </div>
                     </div>
 					<div class="ibox-content">
-                        <div id="using_json"></div>
+                        <div id="dept_tree"></div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>部门管理</h5>
+                        <h5>部门管理 
+							<span id="dqdept"></span>
+						</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link" title="收起">
                                 <i class="fa fa-chevron-up"></i>
@@ -92,8 +94,37 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+					<input id="pid" type="hidden" value="0" />
                     <button id="addclose" type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
                     <button id="addbtn" type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="modal inmodal" id="updModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h5>修改菜单</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="updForm" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">部门名称：</label>
+                            <div class="col-sm-8">
+                                <input id="updName" name="updName" type="text" class="form-control input-sm"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+					<input id="updId" type="hidden" />
+                    <button id="updclose" type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button id="updbtn" type="button" class="btn btn-primary">保存</button>
                 </div>
             </div>
         </div>
@@ -104,8 +135,8 @@
 <script src="/style/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="/style/js/plugins/validate/messages_zh.min.js"></script>
 <script src="/style/js/content.min.js"></script>
-<script src="/style/js/plugins/toastr/toastr.min.js"></script>
 <script src="/style/js/plugins/jsTree/jstree.min.js"></script>
+<script src="/style/js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="/style/js/dept/dept.js"></script>
 </body>
 </html>

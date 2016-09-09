@@ -11,6 +11,8 @@ public class Navigation extends BaseModel {
 	private String type;
 	private int parentId;
 	private String url;
+	private String icon;
+	private int sequence;
 	private List<Navigation> navList;
 
 	public String getName() {
@@ -51,6 +53,22 @@ public class Navigation extends BaseModel {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 
 	public List<Navigation> getNavList() {

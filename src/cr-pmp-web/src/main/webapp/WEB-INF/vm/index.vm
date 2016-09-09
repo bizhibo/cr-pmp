@@ -55,7 +55,7 @@
 						#else
                         <a href="#" #if($nav1.navList.size()==0) class="J_menuItem" #end>
 						#end
-							<i class="fa fa-gears"></i> 
+							<i class="fa fa-$!{nav1.icon}"></i> 
 							<span class="nav-label">$!{nav1.name}</span>
 							#if($nav1.navList.size()>0)
 							<span class="fa arrow"></span>

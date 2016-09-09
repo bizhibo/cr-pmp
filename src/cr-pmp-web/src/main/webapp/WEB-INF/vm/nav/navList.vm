@@ -4,6 +4,8 @@
             <th>菜单名称</th>
             <th>菜单等级</th>
             <th>菜单类型</th>
+			<th>菜单序号</th>
+			<th>菜单图标</th>
             <th>创建时间</th>
             <th>操作</th>
         </tr>
@@ -20,8 +22,13 @@
 					动态菜单
 				#end
 			</td>
+			<td>$!{nav.sequence}</td>
+			<td>
+				<i class="fa fa-$!{nav.icon}"></i> 
+			</td>
             <td>$!dateUtils.formatDateTime($!{nav.createTime})</td>
             <td>
+				<button onclick="del($!{nav.id});" type="button" class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> 删除</button>
             </td>
         </tr>
 		#end

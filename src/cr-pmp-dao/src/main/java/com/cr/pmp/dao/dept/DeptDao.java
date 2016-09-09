@@ -16,4 +16,10 @@ public interface DeptDao {
 
 	public List<JsTreeModel> queryRootNode();
 
+	public Integer delDept(Integer id);
+
+	public Integer updDept(Dept dept);
+
+	public Dept queryById(Integer id);
+
 }
