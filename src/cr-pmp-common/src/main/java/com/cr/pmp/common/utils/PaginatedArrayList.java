@@ -6,6 +6,7 @@ public class PaginatedArrayList<T> extends ArrayList<T> implements
 		PaginatedList<T> {
 	private static final long serialVersionUID = 2841788433467303352L;
 	public static final int PAGESIZE_DEFAULT = 20;
+	public static final int PAGEINDEX_DEFAULT = 1;
 	private int pageSize;
 	private int index;
 	private int totalItem;

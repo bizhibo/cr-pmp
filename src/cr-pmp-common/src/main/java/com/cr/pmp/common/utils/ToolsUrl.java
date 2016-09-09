@@ -197,7 +197,7 @@ public class ToolsUrl implements Cloneable {
 			this.query.putAll(this.toolsUrl.query);
 			this.toolsUrl.setToolsUrlValue(this, this.toolsUrl);
 		} catch (Exception e) {
-			LogUtil.error("copyProperties error!", e);
+			LogUtils.error("copyProperties error!", e);
 		}
 	}
 

@@ -9,7 +9,7 @@ import java.util.Date;
  * @创建者：liushengsong
  * @创建时间： 2014-6-4下午2:47:05
  */
-public class DateUtil {
+public class DateUtils {
 	private static final SimpleDateFormat DATE = new SimpleDateFormat(
 			"yyyy-MM-dd");
 	private static final SimpleDateFormat DATE_TIME = new SimpleDateFormat(
@@ -83,7 +83,7 @@ public class DateUtil {
 				return DATE_TIME.parse(date);
 			}
 		} catch (ParseException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -105,7 +105,7 @@ public class DateUtil {
 				return DATE.parse(date);
 			}
 		} catch (ParseException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -129,7 +129,7 @@ public class DateUtil {
 				return DATE_FORMAT.parse(date);
 			}
 		} catch (ParseException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}

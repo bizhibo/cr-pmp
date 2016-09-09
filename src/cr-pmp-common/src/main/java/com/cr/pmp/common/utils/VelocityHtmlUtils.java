@@ -28,7 +28,7 @@ import com.cr.pmp.common.result.Result;
  * @创建时间： 2014-6-19下午1:58:05
  * 
  */
-public class VelocityHtmlUtil {
+public class VelocityHtmlUtils {
 	/** 编码方式 **/
 	private static final String ENC = "utf-8";
 	private static final String REQUEST_NAME = "request";
@@ -77,17 +77,17 @@ public class VelocityHtmlUtil {
 			String s = this.loadHtml(result, vmPath, request);
 			writer.write(s);
 		} catch (FileNotFoundException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (UnsupportedEncodingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} finally {
-			CloseUtil.close(writer);
-			CloseUtil.close(outputStream);
+			CloseUtils.close(writer);
+			CloseUtils.close(outputStream);
 		}
 	}
 

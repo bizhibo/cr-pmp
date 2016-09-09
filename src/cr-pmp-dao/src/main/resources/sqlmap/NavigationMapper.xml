@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//xml.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cr.pmp.dao.navigation.NavigationDao">
 
+	<resultMap type="navigation" id="navMap">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="level" column="level" />
+		<result property="type" column="type" />
+		<result property="parentId" column="parentId" />
+		<result property="url" column="url" />
+		<result property="createTime" column="createTime" />
+		<result property="modifyTime" column="modifyTime" />
+		<association property="navList" column="id" select="queryListByPid" />
+	</resultMap>
+
 	<sql id="fields">
 		id,
 		name,
@@ -17,11 +29,68 @@
 		cr_pmp_navigation
 	</sql>
 
+	<select id="queryNavPageList" parameterType="java.util.Map"
+		resultType="navigation">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		<where>
+			<if test="level!=null and level!=0">
+				AND level=#{level}
+			</if>
+			<if test="name!=null and name!=''">
+				AND name LIKE CONCAT('%',#{name},'%' )
+			</if>
+		</where>
+		ORDER BY ID DESC LIMIT #{startRow},#{pageSize}
+	</select>
+	<select id="queryCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		COUNT(id)
+		FROM
+		<include refid="tableName" />
+		<where>
+			<if test="level!=null and level!=0">
+				AND level=#{level}
+			</if>
+			<if test="name!=null and name!=''">
+				AND name LIKE CONCAT('%',#{name},'%' )
+			</if>
+		</where>
+	</select>
+	<select id="queryListByLevel" parameterType="java.lang.Integer"
+		resultType="navigation">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		WHERE level = #{level}
+		ORDER BY ID DESC
+	</select>
+	<select id="queryRootNav" resultMap="navMap">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		WHERE level=1
+		ORDER BY ID DESC
+	</select>
+	<select id="queryListByPid" parameterType="java.lang.Integer"
+		resultMap="navMap">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		WHERE parentId=#{parentId}
+		ORDER BY ID DESC
+	</select>
 	<insert id="addNav" parameterType="navigation">
-		insert
+		INSERT
 		<include refid="tableName" />
 		(name,level,type,parentId,url,createTime,modifyTime)
-		values
+		VALUES
 		(#{name},#{level},#{type},#{parentId},#{url},now(),now())
 		<selectKey resultType="java.lang.Integer" keyProperty="id"
 			order="AFTER">

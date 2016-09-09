@@ -2,7 +2,7 @@ package com.cr.pmp.common.result;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cr.pmp.common.utils.JsonUtil;
+import com.cr.pmp.common.utils.JsonUtils;
 
 /**
  * @描述 : 返回的结果集
@@ -28,7 +28,7 @@ public class Result extends ModelAndView {
 	 * @return
 	 */
 	public String toJson() {
-		return JsonUtil.toJson(this.getModel());
+		return JsonUtils.toJson(this.getModel());
 	}
 
 	/**

@@ -8,7 +8,7 @@ package com.cr.pmp.common.utils;
  * @创建时间： 2014-5-8下午4:33:17
  * 
  */
-public class CacheUtil {
+public class CacheUtils {
 
 	/**
 	 * @描述 : 缓存数据
@@ -22,10 +22,10 @@ public class CacheUtil {
 		try {
 			if (value != null) {
 				CachFactory.getInstance().createCache(key, value);
-				LogUtil.info("###### set success key : " + key + " ######");
+				LogUtils.info("###### set success key : " + key + " ######");
 			}
 		} catch (Exception e) {
-			LogUtil.error("###### set error ######", e);
+			LogUtils.error("###### set error ######", e);
 		}
 	}
 
@@ -46,7 +46,7 @@ public class CacheUtil {
 				return null;
 			}
 		} catch (Exception e) {
-			LogUtil.error("###### get error ######", e);
+			LogUtils.error("###### get error ######", e);
 			return null;
 		}
 	}

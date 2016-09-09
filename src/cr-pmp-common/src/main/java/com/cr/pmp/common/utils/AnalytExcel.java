@@ -44,13 +44,13 @@ public class AnalytExcel {
 			}
 			return workbook.getSheetAt(pageAt);
 		} catch (FileNotFoundException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (InvalidFormatException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}

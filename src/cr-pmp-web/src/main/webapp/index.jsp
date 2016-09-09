@@ -1,6 +1,6 @@
 <html>
 <body>
-	<h2 style="width:50%">Hello World!</h2>
+	<h2 style="display: none;">Hello World!</h2>
 </body>
 </html>
 <

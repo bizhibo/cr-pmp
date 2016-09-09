@@ -8,7 +8,7 @@ import java.util.UUID;
  * @创建时间： 2014-6-6上午8:45:16
  * 
  */
-public class UUIDUtil {
+public class UUIDUtils {
 
 	/**
 	 * @描述 : 获取一个UUID标识(小写)

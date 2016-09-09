@@ -60,11 +60,11 @@ public class TranscoderUtils {
 			gz = new GZIPOutputStream(bos);
 			gz.write(in);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException("IO exception compressing data", e);
 		} finally {
-			CloseUtil.close(gz);
-			CloseUtil.close(bos);
+			CloseUtils.close(gz);
+			CloseUtils.close(bos);
 		}
 		return bos.toByteArray();
 	}
@@ -93,12 +93,12 @@ public class TranscoderUtils {
 					byteArrayOutputStream.write(buf, 0, r);
 				}
 			} catch (IOException e) {
-				LogUtil.error(e.getMessage(), e);
+				LogUtils.error(e.getMessage(), e);
 				throw new RuntimeException("IO exception decompress data", e);
 			} finally {
-				CloseUtil.close(gzipInputStream);
-				CloseUtil.close(byteArrayInputStream);
-				CloseUtil.close(byteArrayOutputStream);
+				CloseUtils.close(gzipInputStream);
+				CloseUtils.close(byteArrayInputStream);
+				CloseUtils.close(byteArrayOutputStream);
 			}
 			return byteArrayOutputStream.toByteArray();
 		} else {
@@ -125,11 +125,11 @@ public class TranscoderUtils {
 			objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
 			objectOutputStream.writeObject(o);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException("Non-serializable object", e);
 		} finally {
-			CloseUtil.close(objectOutputStream);
-			CloseUtil.close(byteArrayOutputStream);
+			CloseUtils.close(objectOutputStream);
+			CloseUtils.close(byteArrayOutputStream);
 		}
 		return byteArrayOutputStream.toByteArray();
 	}
@@ -155,14 +155,14 @@ public class TranscoderUtils {
 					obj = objectInputStream.readObject();
 				}
 			} catch (IOException e) {
-				LogUtil.error(e.getMessage(), e);
+				LogUtils.error(e.getMessage(), e);
 				throw new RuntimeException(e);
 			} catch (ClassNotFoundException e) {
-				LogUtil.error(e.getMessage(), e);
+				LogUtils.error(e.getMessage(), e);
 				throw new RuntimeException(e);
 			} finally {
-				CloseUtil.close(objectInputStream);
-				CloseUtil.close(byteArrayInputStream);
+				CloseUtils.close(objectInputStream);
+				CloseUtils.close(byteArrayInputStream);
 			}
 			return obj;
 		} else {

@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.cr.pmp.common.utils.LogUtil;
+import com.cr.pmp.common.utils.LogUtils;
 
 /**
  * @描述 控制层
@@ -30,7 +30,7 @@ public class BaseController {
 	@ExceptionHandler({ Exception.class })
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public void exceptionHandler(Exception e) {
-		LogUtil.error(e.getMessage(), e);
+		LogUtils.error(e.getMessage(), e);
 	}
 
 	public Map<String, Object> getParams() {
@@ -51,9 +51,13 @@ public class BaseController {
 				}
 			}
 		} catch (Exception e) {
-			LogUtil.error("获取请求参数异常!", e);
+			LogUtils.error("获取请求参数异常!", e);
 		}
 		return params;
+	}
+
+	public Object getParams(String name) {
+		return this.getParams().get(name);
 	}
 
 	public Object getParamsObject(Class<?> clazz) {
@@ -63,7 +67,7 @@ public class BaseController {
 			object = clazz.newInstance();
 			BeanUtils.copyProperties(object, params);
 		} catch (Exception e) {
-			LogUtil.error("转换 params to bean异常!", e);
+			LogUtils.error("转换 params to bean异常!", e);
 		}
 		return object;
 	}

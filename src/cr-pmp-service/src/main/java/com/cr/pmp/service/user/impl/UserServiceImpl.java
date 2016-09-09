@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cr.pmp.common.result.Result;
-import com.cr.pmp.common.utils.LogUtil;
-import com.cr.pmp.common.utils.SecurityUtil;
+import com.cr.pmp.common.utils.LogUtils;
+import com.cr.pmp.common.utils.SecurityUtils;
 import com.cr.pmp.dao.user.UserDao;
 import com.cr.pmp.model.user.User;
 import com.cr.pmp.service.user.UserService;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	public Result login(Map<String, Object> params, HttpSession session) {
 		Result result = new Result();
 		try {
-			String md5PW = SecurityUtil.md5(params.get("password").toString());
+			String md5PW = SecurityUtils.md5(params.get("password").toString());
 			params.put("password", md5PW);
 			User user = userDao.login(params);
 			if (user != null) {
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 				result.setMessage("用户名或密码错误!");
 			}
 		} catch (Exception e) {
-			LogUtil.error("登陆异常", e);
+			LogUtils.error("登陆异常", e);
 		}
 		return result;
 	}

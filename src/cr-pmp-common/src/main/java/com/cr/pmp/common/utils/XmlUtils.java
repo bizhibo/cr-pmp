@@ -19,7 +19,7 @@ import com.thoughtworks.xstream.converters.basic.DateConverter;
  * @创建者：liushengsong
  * @创建时间： 2014-6-10上午9:16:24
  */
-public class XmlUtil {
+public class XmlUtils {
 	private static final XStream XSTREAM = new XStream();
 	private static final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
 
@@ -53,13 +53,13 @@ public class XmlUtil {
 					new FileOutputStream(file), "UTF-8"));// 设置写入的文件编码,解决中文问题
 			XSTREAM.toXML(entity, writer);
 		} catch (FileNotFoundException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (UnsupportedEncodingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} finally {
-			CloseUtil.close(writer);
+			CloseUtils.close(writer);
 		}
 	}
 
@@ -90,10 +90,10 @@ public class XmlUtil {
 			reader = new BufferedReader(new FileReader(file));
 			return (T) XSTREAM.fromXML(reader);
 		} catch (FileNotFoundException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} finally {
-			CloseUtil.close(reader);
+			CloseUtils.close(reader);
 		}
 	}
 

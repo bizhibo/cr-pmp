@@ -13,10 +13,12 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.cr.pmp.model.user.User" />
 		<typeAlias alias="navigation" type="com.cr.pmp.model.navigation.Navigation" />
+		<typeAlias alias="dept" type="com.cr.pmp.model.dept.Dept" />
 	</typeAliases>
 	<!-- sqlmap 映射器 -->
 	<mappers>
 		<mapper resource="sqlmap/UserMapper.xml"/>
 		<mapper resource="sqlmap/NavigationMapper.xml"/>
+		<mapper resource="sqlmap/DeptMapper.xml"/>
 	</mappers>
 </configuration>

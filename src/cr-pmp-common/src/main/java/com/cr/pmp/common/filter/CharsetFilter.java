@@ -14,7 +14,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import com.cr.pmp.common.utils.LogUtil;
+import com.cr.pmp.common.utils.LogUtils;
 
 /**
  * @描述 : 字符编码过滤器
@@ -59,7 +59,7 @@ public class CharsetFilter implements Filter {
 			try {
 				request.setCharacterEncoding(this.defaultCharset);
 			} catch (UnsupportedEncodingException ee) {
-				LogUtil.error("Failed to set INPUT charset to "
+				LogUtils.error("Failed to set INPUT charset to "
 						+ this.defaultCharset, e);
 			}
 		}

@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
  * @创建时间： 2014-6-11下午2:30:54
  * 
  */
-public class CookieUtil {
+public class CookieUtils {
 	/** cookie写入的编码 **/
 	private static final String ENC = "utf-8";
 	/** cookie写入的域名称 **/
@@ -49,7 +49,7 @@ public class CookieUtil {
 			}
 			return null;
 		} catch (UnsupportedEncodingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -73,7 +73,7 @@ public class CookieUtil {
 			newCookie.setPath(path);
 			response.addCookie(newCookie);
 		} catch (UnsupportedEncodingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}

@@ -3,7 +3,6 @@ package com.cr.pmp.model.dept;
 public class Dept {
 
 	private String name;
-	private int level;
 	private int parentId;
 
 	public String getName() {
@@ -12,14 +11,6 @@ public class Dept {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
 	}
 
 	public int getParentId() {

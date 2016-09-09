@@ -53,13 +53,13 @@ public class ExportExcel {
 			out = new FileOutputStream(fileName);
 			workbook.write(out);
 		} catch (FileNotFoundException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} finally {
-			CloseUtil.close(out);
+			CloseUtils.close(out);
 		}
 	}
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>H+ 后台主题UI框架 - 主页</title>
+    <title>CR-PMP</title>
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -48,47 +48,50 @@
                         <div class="logo-element">H+
                         </div>
                     </li>
+					#foreach($nav1 in $treeNav)
                     <li>
-                        <a href="#"><i class="fa fa-envelope-o"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
+						#if($!{nav1.type}=="DYNAMIC")
+						<a href="$!{nav1.url}" #if($nav1.navList.size()==0) class="J_menuItem" #end>
+						#else
+                        <a href="#" #if($nav1.navList.size()==0) class="J_menuItem" #end>
+						#end
+							<i class="fa fa-gears"></i> 
+							<span class="nav-label">$!{nav1.name}</span>
+							#if($nav1.navList.size()>0)
+							<span class="fa arrow"></span>
+							#end
+						</a>
+						#foreach($nav2 in $nav1.navList)
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="/nav/index.do">基本表单</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_validate.html">表单验证</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_advanced.html">高级插件</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_wizard.html">表单向导</a>
-                            </li>
                             <li>
-                                <a href="#">文件上传 <span class="fa arrow"></span></a>
+                                #if($!{nav2.type}=="DYNAMIC")
+        						<a href="$!{nav2.url}" #if($nav2.navList.size()==0) class="J_menuItem" #end>
+        						#else
+                                <a href="#" #if($nav2.navList.size()==0) class="J_menuItem" #end>
+        						#end
+									$!{nav2.name} 
+									#if($nav2.navList.size()>0)
+        							<span class="fa arrow"></span>
+        							#end
+								</a>
+								#foreach($nav3 in $nav2.navList)
                                 <ul class="nav nav-third-level">
-                                    <li><a class="J_menuItem" href="form_webuploader.html">百度WebUploader</a>
-                                    </li>
-                                    <li><a class="J_menuItem" href="form_file_upload.html">DropzoneJS</a>
-                                    </li>
-                                    <li><a class="J_menuItem" href="form_avatar.html">头像裁剪上传</a>
+                                    <li>
+										#if($!{nav3.type}=="DYNAMIC")
+										<a class="J_menuItem" href="$!{nav3.url}">
+										#else
+										<a class="J_menuItem" href="#">
+										#end
+											$!{nav3.name} 
+										</a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li>
-                                <a href="#">编辑器 <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li><a class="J_menuItem" href="form_editors.html">富文本编辑器</a>
-                                    </li>
-                                    <li><a class="J_menuItem" href="form_simditor.html">simditor</a>
-                                    </li>
-                                    <li><a class="J_menuItem" href="form_markdown.html">MarkDown编辑器</a>
-                                    </li>
-                                    <li><a class="J_menuItem" href="code_editor.html">代码编辑器</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="J_menuItem" href="suggest.html">搜索自动补全</a>
-                            </li>
-                            <li><a class="J_menuItem" href="layerdate.html">日期选择器layerDate</a>
+								#end
                             </li>
                         </ul>
+						#end
                     </li>
+					#end
                 </ul>
             </div>
         </nav>

@@ -1,4 +1,4 @@
-package com.cr.pmp.web.user;
+package com.cr.pmp.controller.user;
 
 import java.util.Map;
 

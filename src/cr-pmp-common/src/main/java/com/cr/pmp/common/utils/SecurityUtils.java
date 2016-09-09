@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
  * @创建者：liushengsong @创建时间： 2014-6-6上午8:57:23
  * 
  */
-public class SecurityUtil {
+public class SecurityUtils {
 	private final static String DES = "DES";
 	private final static String AES = "AES";
 	private final static String MD5 = "MD5";
@@ -40,7 +40,7 @@ public class SecurityUtil {
 				return null;
 			}
 		} catch (Exception e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -91,7 +91,7 @@ public class SecurityUtil {
 				return null;
 			}
 		} catch (Exception e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -124,7 +124,7 @@ public class SecurityUtil {
 				return null;
 			}
 		} catch (Exception e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -156,7 +156,7 @@ public class SecurityUtil {
 				return null;
 			}
 		} catch (Exception e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -188,7 +188,7 @@ public class SecurityUtil {
 				return null;
 			}
 		} catch (Exception e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}

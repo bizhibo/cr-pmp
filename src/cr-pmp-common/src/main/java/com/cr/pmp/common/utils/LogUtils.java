@@ -28,15 +28,15 @@ import org.slf4j.spi.LocationAwareLogger;
  *       Log.LOG.debug("message"); (使用固定的静态 Logger 对象 LOG) 若静态引入(import static
  *       xxx.Log.*;)，则可以这样调用： debug("message") 或者 LOG.debug("message")
  */
-public class LogUtil {
+public class LogUtils {
 	/** 固定的静态 Logger 对象 LOG **/
-	public static final Logger LOG = LoggerFactory.getLogger(LogUtil.class);
+	public static final Logger LOG = LoggerFactory.getLogger(LogUtils.class);
 	/** 在调用 debug() 等方法时候，是否使用固定的静态 Logger 对象 LOG **/
 	public static final boolean CONFIG_ALWAYS_USE_STATIC_LOGGER_OBJECT = false;
 	/** 自动根据调用者所在的类名动态生成的 Logger 对象 **/
 	private static Map<String, Logger> loggers = new HashMap<String, Logger>();
 	/** 本类的名字，用于在打印时候打印真正的调用者的类名而不是本类的名字 **/
-	private static String FQCN = LogUtil.class.getName();
+	private static String FQCN = LogUtils.class.getName();
 	/** 是否启用日志平台收集日志，默认是false不启用 **/
 	private static boolean enable = false;
 //	/** 日志收集的唯一值 **/

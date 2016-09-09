@@ -22,7 +22,7 @@ import org.codehaus.jackson.type.TypeReference;
  * @创建时间： 2014-6-5上午10:26:48
  * 
  */
-public class JsonUtil {
+public class JsonUtils {
 	private static final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
 	private static final ObjectMapper OBJECTMAPPER = new ObjectMapper();
 
@@ -60,13 +60,13 @@ public class JsonUtil {
 			OBJECTMAPPER.writeValue(jg, entity);
 			return sw.toString();
 		} catch (JsonGenerationException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (JsonMappingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -86,13 +86,13 @@ public class JsonUtil {
 		try {
 			return OBJECTMAPPER.readValue(str, clazz);
 		} catch (JsonParseException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (JsonMappingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -112,13 +112,13 @@ public class JsonUtil {
 		try {
 			return OBJECTMAPPER.readValue(str, t);
 		} catch (JsonParseException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (JsonMappingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -140,13 +140,13 @@ public class JsonUtil {
 					.constructParametricType(collectionClass, elementClasses);
 			return OBJECTMAPPER.readValue(str, type);
 		} catch (JsonParseException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (JsonMappingException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			LogUtil.error(e.getMessage(), e);
+			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 	}
