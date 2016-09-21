@@ -1,9 +1,7 @@
-package com.cr.pmp.service.user.impl;
+package com.cr.pmp.service.product.impl;
 
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,55 +10,25 @@ import com.cr.pmp.common.result.Result;
 import com.cr.pmp.common.utils.LogUtils;
 import com.cr.pmp.common.utils.PaginatedArrayList;
 import com.cr.pmp.common.utils.PaginatedList;
-import com.cr.pmp.common.utils.SecurityUtils;
+import com.cr.pmp.dao.product.ProductDao;
 import com.cr.pmp.dao.user.UserDao;
+import com.cr.pmp.model.product.Product;
 import com.cr.pmp.model.user.User;
-import com.cr.pmp.service.user.UserService;
+import com.cr.pmp.service.product.ProductService;
 
-@Service("userService")
-public class UserServiceImpl implements UserService {
+@Service("productService")
+public class ProductServiceImpl implements ProductService {
 
+	@Autowired
+	private ProductDao productDao;
 	@Autowired
 	private UserDao userDao;
 
 	@Override
-	public Result login(Map<String, Object> params, HttpSession session) {
+	public Result queryProductPageList(Map<String, Object> params) {
 		Result result = new Result();
 		try {
-			String md5PW = SecurityUtils.md5(params.get("password").toString());
-			params.put("password", md5PW);
-			User user = userDao.login(params);
-			if (user != null) {
-				session.setAttribute("userInfo", user);
-				result.setResultCode(true);
-				result.setMessage("登陆成功!");
-			} else {
-				result.setResultCode(false);
-				result.setMessage("用户名或密码错误!");
-			}
-		} catch (Exception e) {
-			LogUtils.error("登陆异常", e);
-		}
-		return result;
-	}
-
-	@Override
-	public Result queryAllUser() {
-		Result result = new Result();
-		try {
-			List<User> users = userDao.queryAllUser();
-			result.addObject("users", users);
-		} catch (Exception e) {
-			LogUtils.error(e.getMessage(), e);
-		}
-		return result;
-	}
-
-	@Override
-	public Result queryUserPageList(Map<String, Object> params) {
-		Result result = new Result();
-		try {
-			int count = userDao.queryCount(params);
+			int count = productDao.queryCount(params);
 			if (params.get("page") == null || params.get("page").equals("")
 					|| params.get("page").equals("0")) {
 				params.put("page", PaginatedArrayList.PAGEINDEX_DEFAULT);
@@ -70,14 +38,14 @@ public class UserServiceImpl implements UserService {
 					|| params.get("pageSize").equals("0")) {
 				params.put("pageSize", PaginatedArrayList.PAGESIZE_DEFAULT);
 			}
-			PaginatedList<User> pageList = new PaginatedArrayList<User>(
+			PaginatedList<Product> pageList = new PaginatedArrayList<Product>(
 					Integer.valueOf(params.get("page").toString()),
 					Integer.valueOf(params.get("pageSize").toString()), count);
 			params.put("startRow",
 					pageList.getStartRow() > 0 ? pageList.getStartRow() - 1
 							: pageList.getStartRow());
-			List<User> userList = userDao.queryUserPageList(params);
-			pageList.addAll(userList);
+			List<Product> productList = productDao.queryProductPageList(params);
+			pageList.addAll(productList);
 			result.addObject("pageList", pageList);
 			result.addObject("params", params);
 		} catch (Exception e) {
@@ -87,10 +55,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Result addUser(User user) {
+	public Result addProduct(Product product) {
 		Result result = new Result();
 		try {
-			int flag = userDao.addUser(user);
+			int flag = productDao.addProduct(product);
 			if (flag > 0) {
 				result.setResultCode(true);
 			} else {
@@ -104,11 +72,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Result queryUserInfo(String userName) {
+	public Result queryProductInfo(Integer id) {
 		Result result = new Result();
 		try {
-			User user = userDao.queryUserInfo(userName);
-			result.addObject("user", user);
+			Product product = productDao.queryProductInfo(id);
+			if (product != null) {
+				User user = userDao.queryUserInfo(product.getLeader());
+				result.addObject("user", user);
+				result.addObject("product", product);
+			}
 		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);
 		}
@@ -116,10 +88,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Result delUser(String userName) {
+	public Result delProduct(Integer id) {
 		Result result = new Result();
 		try {
-			Integer flag = userDao.delUser(userName);
+			Integer flag = productDao.delProduct(id);
 			if (flag > 0) {
 				result.setResultCode(true);
 			} else {

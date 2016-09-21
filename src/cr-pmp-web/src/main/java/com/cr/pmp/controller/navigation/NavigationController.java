@@ -22,7 +22,7 @@ public class NavigationController extends BaseController {
 		return new Result("/nav/index");
 	}
 
-	@RequestMapping("/addNav")
+	@RequestMapping("/add-nav")
 	@ResponseBody
 	public String addNav() {
 		Result result = navigationService.addNav((Navigation) this
@@ -30,7 +30,7 @@ public class NavigationController extends BaseController {
 		return result.toJson();
 	}
 
-	@RequestMapping("/getNavList")
+	@RequestMapping("/get-nav-list")
 	@ResponseBody
 	public String getNavList() {
 		Integer level = Integer.valueOf(this.getParams("level").toString());
@@ -38,14 +38,14 @@ public class NavigationController extends BaseController {
 		return result.toJson();
 	}
 
-	@RequestMapping("/pageList")
+	@RequestMapping("/page-list")
 	public Result queryNavList() {
 		Result result = navigationService.queryNavPageList(this.getParams());
 		result.setViewName("/nav/navList");
 		return result;
 	}
 
-	@RequestMapping("/delNav")
+	@RequestMapping("/del-nav")
 	@ResponseBody
 	public String delNav() {
 		Result result = navigationService.delNav(Integer.valueOf(this

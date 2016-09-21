@@ -34,7 +34,7 @@
 				AND name LIKE CONCAT('%',#{name},'%' )
 			</if>
 		</where>
-		ORDER BY ID DESC LIMIT #{startRow},#{pageSize}
+		ORDER BY id DESC LIMIT #{startRow},#{pageSize}
 	</select>
 	<select id="queryCount" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
@@ -58,7 +58,7 @@
 		FROM
 		<include refid="tableName" />
 		WHERE parentId=0
-		ORDER BY ID ASC
+		ORDER BY id ASC
 	</select>
 	<select id="queryListByPid" parameterType="java.lang.Integer"
 		resultMap="treeMap">
@@ -68,7 +68,7 @@
 		FROM
 		<include refid="tableName" />
 		WHERE parentId=#{parentId}
-		ORDER BY ID ASC
+		ORDER BY id ASC
 	</select>
 	<insert id="addDept" parameterType="dept">
 		INSERT

@@ -68,6 +68,9 @@
 				<entry key="dateUtils">
 					<bean class="com.cr.pmp.common.utils.DateUtils" />
 				</entry>
+				<entry key="urlDecoder">
+					<bean class="java.net.URLDecoder" />
+				</entry>
 			</map>
 		</constructor-arg>
 	</bean>

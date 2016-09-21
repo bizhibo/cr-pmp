@@ -22,6 +22,6 @@
     </tbody>
 </table>
 <div>
-	#set($pageModule = $mainModule.getTarget("/dept/pageList.do"))
+	#set($pageModule = $mainModule.getTarget("/dept/pageList.do").addQueryData("name",$!params.get("name")).addQueryData("parentId",$!params.get("parentId")))
 	#showAjaxPage($pageModule $pageList)
 </div>

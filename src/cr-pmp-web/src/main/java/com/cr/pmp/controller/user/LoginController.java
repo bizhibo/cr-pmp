@@ -30,5 +30,5 @@ public class LoginController extends BaseController {
 	public Result loginPage() {
 		return new Result("/login");
 	}
-	
+
 }

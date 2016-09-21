@@ -13,6 +13,7 @@
 		email,
 		phone,
 		position,
+		portraitUrl,
 		createTime,
 		modifyTime
 	</sql>
@@ -23,9 +24,109 @@
 
 	<select id="login" parameterType="java.util.Map" resultType="user">
 		select
-		userName,name,birthday,sex,deptId,email,phone,position
+		userName,name,birthday,sex,deptId,email,phone,position,portraitUrl
 		from
 		<include refid="tableName" />
 		where userName=#{userName} and password=#{password}
 	</select>
+
+	<select id="queryAllUser" resultType="user">
+		SELECT
+		cpu.userName AS
+		userName,
+		cpu.name AS name,
+		cpu.position AS position,
+		cpd.name AS
+		deptName
+		FROM
+		cr_pmp_user AS cpu
+		LEFT JOIN cr_pmp_dept AS cpd
+		ON
+		cpu.deptId = cpd.id
+	</select>
+	<select id="queryUserInfo" parameterType="java.lang.String"
+		resultType="user">
+		SELECT
+		cpu.userName AS userName,
+		cpu.name AS name,
+		cpu.position AS position,
+		cpu.birthday AS birthday,
+		cpu.sex AS sex,
+		cpu.email AS email,
+		cpu.phone AS phone,
+		cpu.portraitUrl AS portraitUrl,
+		cpd.name AS deptName
+		FROM
+		cr_pmp_user AS cpu
+		LEFT JOIN cr_pmp_dept AS cpd
+		ON
+		cpu.deptId = cpd.id
+		WHERE
+		cpu.userName=#{userName}
+	</select>
+	<select id="queryUserPageList" parameterType="java.util.Map"
+		resultType="user">
+		SELECT
+		cpu.userName AS userName,
+		cpu.name AS name,
+		cpu.position AS
+		position,
+		cpu.sex AS sex,
+		cpu.createTime AS createTime,
+		cpd.name AS
+		deptName
+		FROM
+		cr_pmp_user AS cpu
+		LEFT JOIN
+		cr_pmp_dept AS cpd
+		ON
+		cpu.deptId=cpd.id
+		<where>
+			<if test="userName!=null and userName!=''">
+				AND cpu.userName=#{userName}
+			</if>
+			<if test="sex!=null and sex!=''">
+				AND cpu.sex=#{sex}
+			</if>
+			<if test="name!=null and name!=''">
+				AND cpu.name LIKE CONCAT('%',#{name},'%' )
+			</if>
+		</where>
+		ORDER BY cpu.id DESC LIMIT #{startRow},#{pageSize}
+	</select>
+	<select id="queryCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		COUNT(id)
+		FROM
+		<include refid="tableName" />
+		<where>
+			<if test="userName!=null and userName!=''">
+				AND userName=#{userName}
+			</if>
+			<if test="sex!=null and sex!=''">
+				AND sex=#{sex}
+			</if>
+			<if test="name!=null and name!=''">
+				AND name LIKE CONCAT('%',#{name},'%' )
+			</if>
+		</where>
+	</select>
+	<insert id="addUser" parameterType="user">
+		INSERT
+		<include refid="tableName" />
+		(userName,password,name,birthday,sex,deptId,email,phone,position,portraitUrl,createTime,modifyTime)
+		VALUES
+		(#{userName},#{password},#{name},#{birthday},#{sex},#{deptId},#{email},#{phone},#{position},#{portraitUrl},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+	<delete id="delUser" parameterType="java.lang.String">
+		DELETE
+		FROM
+		<include refid="tableName" />
+		WHERE userName=#{userName}
+	</delete>
 </mapper>

@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.cr.pmp.common.result.Result;
+import com.cr.pmp.model.user.User;
 
 /**
  * @描述 : 用户相关业务service
@@ -23,4 +24,14 @@ public interface UserService {
 	 * @return
 	 */
 	public Result login(Map<String, Object> params, HttpSession session);
+
+	public Result queryAllUser();
+
+	public Result queryUserPageList(Map<String, Object> params);
+
+	public Result addUser(User user);
+
+	public Result queryUserInfo(String userName);
+
+	public Result delUser(String userName);
 }

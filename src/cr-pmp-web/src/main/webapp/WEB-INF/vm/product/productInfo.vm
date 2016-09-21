@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>产品详情</title>
+        <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="/style/css/animate.min.css" rel="stylesheet"/>
+        <link href="/style/css/style.min.css" rel="stylesheet"/>
+    </head>
+    <body class="gray-bg">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="m-b-md">
+                                <a class="btn btn-white btn-xs pull-right" href="/product/index.do">
+									<i class="fa fa-mail-reply"></i>
+									返回上一页
+								</a>
+                                <h2>产品详情</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dl class="dl-horizontal">
+                                <dt>产品名称：</dt>
+                                <dd>$!{product.name}</dd>
+                                <dt>产品代码：</dt>
+                                <dd>$!{product.code}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-7">
+                            <dl class="dl-horizontal">
+                                <dt>产品负责人：</dt>
+                                <dd>$!{user.name}-$!{user.deptName}-$!{user.position}</dd>
+                                <dt>附件：</dt>
+                                <dd>
+									<a href="$!{product.fileUrl}">点击下载</a>
+								</dd>
+                            </dl>
+                        </div>
+                    </div>
+					<div class="row">
+						<div class="col-sm-12">
+							<dl class="dl-horizontal">
+                                <dt>产品描述：</dt>
+                                <dd>
+									$!urlDecoder.decode($!{product.productDescribe})
+								</dd>
+                            </dl>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <script src="/style/js/jquery.min.js"></script>
+        <script src="/style/js/bootstrap.min.js"></script>
+        <script src="/style/js/content.min.js"></script>
+    </body>
+</html>

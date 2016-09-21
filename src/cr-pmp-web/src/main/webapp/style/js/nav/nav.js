@@ -26,7 +26,7 @@ $(function() {
 				if (level > 1) {
 					var op = "<option value=''>请选择</option>"
 					$.ajax({
-						url : "/nav/getNavList.do",
+						url : "/nav/get-nav-list.do",
 						type : "post",
 						data : {
 							"level" : level - 1
@@ -70,7 +70,7 @@ $(function() {
 	$("#qbtn").bind(
 			"click",
 			function() {
-				var url = "/nav/pageList.do?name=" + $("#qname").val()
+				var url = "/nav/page-list.do?name=" + $("#qname").val()
 						+ "&level=" + $("input[name=qlevel]:checked").val();
 				selectPage(url);
 			});
@@ -101,7 +101,7 @@ $(function() {
 			"parentId" : pid
 		};
 		$.ajax({
-			url : "/nav/addNav.do",
+			url : "/nav/add-nav.do",
 			type : "post",
 			data : data,
 			dataType : "json",
@@ -135,7 +135,7 @@ function del(id) {
 		closeOnConfirm : false
 	}, function() {
 		$.ajax({
-			url : "/nav/delNav.do",
+			url : "/nav/del-nav.do",
 			type : "post",
 			data : {
 				"id" : id
@@ -146,7 +146,6 @@ function del(id) {
 					swal("提示", "删除失败！当前菜单下还存在子菜单请先处理。", "error");
 				} else if (result.resultCode == true) {
 					swal("提示", "您已经永久删除了这条信息。", "success");
-					$("#refresh").trigger("click");
 					$("#qbtn").trigger("click");
 				} else {
 					swal("提示", "删除失败！", "error");

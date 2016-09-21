@@ -18,7 +18,7 @@ $(function() {
 	$("#qbtn").bind(
 			"click",
 			function() {
-				var url = "/dept/pageList.do?parentId=" + $("#pid").val()
+				var url = "/dept/page-list.do?parentId=" + $("#pid").val()
 						+ "&name=" + $("#qname").val();
 				selectPage(url);
 			});
@@ -32,7 +32,7 @@ $(function() {
 		};
 
 		$.ajax({
-			url : "/dept/addDept.do",
+			url : "/dept/add-dept.do",
 			type : "post",
 			data : data,
 			dataType : "json",
@@ -63,7 +63,7 @@ $(function() {
 		};
 
 		$.ajax({
-			url : "/dept/updDept.do",
+			url : "/dept/upd-dept.do",
 			type : "post",
 			data : data,
 			dataType : "json",
@@ -95,13 +95,13 @@ $(function() {
 										"当前选中部门："
 												+ data.instance
 														.get_node(data.selected[0]).text);
-						var url = "/dept/pageList.do?parentId="
+						var url = "/dept/page-list.do?parentId="
 								+ data.instance.get_node(data.selected[0]).id;
 						selectPage(url);
 					});
 	$("#refresh").bind("click", function() {
 		$.ajax({
-			url : "/dept/getDept.do",
+			url : "/dept/get-dept.do",
 			type : "post",
 			data : "",
 			dataType : "json",
@@ -133,7 +133,7 @@ function del(id) {
 		closeOnConfirm : false
 	}, function() {
 		$.ajax({
-			url : "/dept/delDept.do",
+			url : "/dept/del-dept.do",
 			type : "post",
 			data : {
 				"id" : id
@@ -159,7 +159,7 @@ function del(id) {
 }
 function queryById(id) {
 	$.ajax({
-		url : "/dept/queryById.do",
+		url : "/dept/query-by-id.do",
 		type : "post",
 		data : {
 			"id" : id

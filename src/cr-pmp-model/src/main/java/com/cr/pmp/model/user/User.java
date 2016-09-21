@@ -24,12 +24,16 @@ public class User extends BaseModel {
 	private String sex;
 	/** 所属部门id **/
 	private int deptId;
+	/** 所属部门名称 **/
+	private String deptName;
 	/** 邮箱 **/
 	private String email;
 	/** 手机号码 **/
 	private String phone;
 	/** 职位 **/
 	private String position;
+	/** 头像url **/
+	private String portraitUrl;
 
 	public String getUserName() {
 		return userName;
@@ -79,6 +83,14 @@ public class User extends BaseModel {
 		this.deptId = deptId;
 	}
 
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -101,6 +113,14 @@ public class User extends BaseModel {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public String getPortraitUrl() {
+		return portraitUrl;
+	}
+
+	public void setPortraitUrl(String portraitUrl) {
+		this.portraitUrl = portraitUrl;
 	}
 
 }

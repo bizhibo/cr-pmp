@@ -115,6 +115,7 @@ public class DeptServiceImpl implements DeptService {
 			List<Dept> deptList = deptDao.queryDeptPageList(params);
 			pageList.addAll(deptList);
 			result.addObject("pageList", pageList);
+			result.addObject("params", params);
 		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);
 		}

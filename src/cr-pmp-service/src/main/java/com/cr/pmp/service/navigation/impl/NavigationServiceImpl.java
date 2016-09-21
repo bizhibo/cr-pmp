@@ -1,6 +1,5 @@
 package com.cr.pmp.service.navigation.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +43,7 @@ public class NavigationServiceImpl implements NavigationService {
 			List<Navigation> navList = navigationDao.queryNavPageList(params);
 			pageList.addAll(navList);
 			result.addObject("pageList", pageList);
+			result.addObject("params", params);
 		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);
 		}
