@@ -5,7 +5,7 @@ import java.util.Date;
 import com.cr.pmp.common.base.BaseModel;
 
 /**
- * @描述 : 用户实体
+ * @描述 : 用户
  * @创建者：cr-pmp
  * @创建时间： 2016年8月21日下午9:49:42
  *

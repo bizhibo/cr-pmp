@@ -35,6 +35,6 @@
     </tbody>
 </table>
 <div>
-	#set($pageModule = $mainModule.getTarget("/nav/pageList.do").addQueryData("name",$!params.get("name")).addQueryData("level",$!params.get("level")))
+	#set($pageModule = $mainModule.getTarget("/nav/page-list.do").addQueryData("name",$!params.get("name")).addQueryData("level",$!params.get("level")))
 	#showAjaxPage($pageModule $pageList)
 </div>

@@ -1,9 +1,18 @@
 package com.cr.pmp.model.tree;
 
+/**
+ * @描述 : 树状态 
+ * @创建者：cr-pmp
+ * @创建时间： 2016年11月7日上午11:02:11
+ *
+ */
 public class State {
 
+	/** 树打开状态 **/
 	private Boolean opened = true;
+	/** 树是否可以点击 **/
 	private Boolean disabled;
+	/** 树是否被选中 **/
 	private Boolean selected;
 
 	public Boolean getOpened() {

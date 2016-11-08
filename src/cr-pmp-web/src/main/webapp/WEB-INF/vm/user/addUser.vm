@@ -112,8 +112,8 @@
                         <div id="dept_tree"></div>
                     </div>
                     <div class="modal-footer">
-                        <button id="closebtn" type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                        <button id="deptbtn" type="button" class="btn btn-primary">保存</button>
+						<button id="deptbtn" type="button" class="btn btn-primary btn-block">保存</button>
+                        <button id="closebtn" type="button" class="btn btn-white btn-block" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
             </div>

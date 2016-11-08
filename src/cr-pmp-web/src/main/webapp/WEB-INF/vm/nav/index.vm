@@ -141,8 +141,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="addclose" type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                        <button id="addbtn" type="button" class="btn btn-primary">保存</button>
+						<button id="addbtn" type="button" class="btn btn-primary btn-block">保存</button>
+                        <button id="addclose" type="button" class="btn btn-white btn-block" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
             </div>

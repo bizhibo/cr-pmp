@@ -1,0 +1,38 @@
+#foreach($board in $boards)
+<li class="boardli">
+    <header>
+		<h5>$!{board.name}</h5>
+		<div class="ibox-tools">
+			<a class="collapse-link pull-right" title="删除看板">
+                <i class="fa fa-trash"></i>
+            </a>
+			<a class="collapse-link pull-right" title="添加任务" onclick="taskModal($!{board.id},'$!{board.name}')">
+                <i class="fa fa-plus-square"></i>
+            </a>
+		</div>
+    </header>
+    <p class="small">
+        <i class="fa fa-hand-o-up"></i>在列表之间拖动任务面板
+    </p>
+	<div style="width:250px;height:90%;overflow:auto;">
+    <ul class="sortable-list connectList agile-list ui-sortable" board="$!{board.id}">
+		#foreach($task in $board.tasks)
+        <li class="success-element" style="white-space: normal;" task="$!{task.id}">
+			$!{task.name}<br/>
+			执行人：$!{task.performer}<br/>
+			优先级：
+			#if($!{task.priority}==1)
+				<span class="badge badge-success">普通</span>
+			#else
+				<span class="badge badge-warning">紧急</span>
+			#end
+			<br/>
+            <i class="fa fa-clock-o">预计完成时间:</i>
+			$!dateUtils.formatDateTime($!{task.endDate})<br/>
+			<a href="#" class="btn btn-xs btn-danger">删除</a>
+        </li>
+		#end
+    </ul>
+	</div>
+</li>
+#end

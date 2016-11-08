@@ -7,10 +7,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 	<display-name>cr-pmp</display-name>
-	<!-- <filter> <filter-name>SSOAutoFilter</filter-name> <filter-class>com.bsoft.sso.client.filter.SSOAutoFilter</filter-class> 
-		<init-param> <param-name>autoCenterUrl</param-name> <param-value>http://127.0.0.1:8090/sso/authCenter.sso</param-value> 
-		</init-param> </filter> <filter-mapping> <filter-name>SSOAutoFilter</filter-name> 
-		<url-pattern>*.do</url-pattern> </filter-mapping> -->
 	<!--begin 字符编码设置 -->
 	<filter>
 		<filter-name>charsetFilter</filter-name>

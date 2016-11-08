@@ -2,7 +2,7 @@
 <body>
 	<h2 style="display: none;">Hello World!</h2>
 	<input id="pid" type="hidden" disabled value="0" onclick="del(id)" readonly="readonly"/>
-	<select>
+	<select onclick="">
 		<optgroup label=""></optgroup>
 		<ins></ins>
 	</select>

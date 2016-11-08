@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//xml.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.pmp.dao.task.TaskDao">
+
+	<resultMap type="taskBoard" id="taskBoardMap">
+		<result property="id" column="id" />
+		<result property="pid" column="pid" />
+		<result property="name" column="name" />
+		<result property="createTime" column="createTime" />
+		<result property="modifyTime" column="modifyTime" />
+		<association property="tasks" column="id" select="queryTaskByTbid" />
+	</resultMap>
+
+	<sql id="taskBoardFields">
+		id,
+		pid,
+		name,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="taskFields">
+		id,
+		pid,
+		tbid,
+		name,
+		performer,
+		endDate,
+		priority,
+		remarks,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="subTaskFields">
+		id,
+		tid,
+		tbid,
+		pid,
+		remarks,
+		performer,
+		endDate,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="taskBoardTableName">
+		cr_pmp_task_board
+	</sql>
+
+	<sql id="taskTableName">
+		cr_pmp_task
+	</sql>
+
+	<sql id="subTaskTableName">
+		cr_pmp_sub_task
+	</sql>
+
+	<select id="queryTaskBoardByPid" parameterType="java.lang.Integer"
+		resultMap="taskBoardMap">
+		SELECT
+		<include refid="taskBoardFields" />
+		FROM
+		<include refid="taskBoardTableName" />
+		WHERE pid=#{pid} ORDER BY id ASC
+	</select>
+
+	<select id="queryTaskByTbid" parameterType="java.lang.Integer"
+		resultType="task">
+		SELECT
+		<include refid="taskFields" />
+		FROM
+		<include refid="taskTableName" />
+		WHERE tbid=#{tbid} ORDER BY endDate ASC
+	</select>
+
+	<insert id="addTaskBoard" parameterType="taskBoard">
+		INSERT
+		<include refid="taskBoardTableName" />
+		(pid,name,createTime,modifyTime)
+		VALUES
+		(#{pid},#{name},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+
+	<insert id="addTask" parameterType="task">
+		INSERT
+		<include refid="taskTableName" />
+		(pid,tbid,name,performer,endDate,priority,remarks,createTime,modifyTime)
+		VALUES
+		(#{pid},#{tbid},#{name},#{performer},#{endDate},#{priority},#{remarks},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+
+	<update id="updateTask" parameterType="task">
+		UPDATE
+		<include refid="taskTableName" />
+		SET modifyTime=now()
+		<if test="tbid!=null">
+			,tbid=#{tbid}
+		</if>
+		<if test="name!=null and name!=''">
+			,name=#{name}
+		</if>
+		<if test="performer!=null and performer!=''">
+			,performer=#{performer}
+		</if>
+		<if test="endDate!=null and endDate!=''">
+			,endDate=#{endDate}
+		</if>
+		<if test="priority!=null and priority!=0">
+			,priority=#{priority}
+		</if>
+		<if test="remarks!=null and remarks!=''">
+			,remarks=#{remarks}
+		</if>
+		WHERE id=#{id}
+	</update>
+	<insert id="addSubTask" parameterType="subTask">
+		INSERT
+		<include refid="subTaskTableName" />
+		(tid,tbid,pid,performer,endDate,remarks,createTime,modifyTime)
+		VALUES
+		(#{tid},#{tbid},#{pid},#{performer},#{endDate},#{remarks},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+	<delete id="deleteTaskBoard">
+	</delete>
+	<delete id="deleteTask">
+	</delete>
+	<delete id="deleteSubTask">
+	</delete>
+</mapper>

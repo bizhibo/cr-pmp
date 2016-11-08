@@ -2,6 +2,7 @@ package com.cr.pmp.common.base;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,12 +11,14 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.cr.pmp.common.utils.DateTimeConverter;
 import com.cr.pmp.common.utils.LogUtils;
 
 /**
@@ -24,6 +27,11 @@ import com.cr.pmp.common.utils.LogUtils;
  * @创建时间 1/5/2015
  */
 public class BaseController {
+
+	static {
+		ConvertUtils.register(new DateTimeConverter(), Date.class);
+	}
+
 	@Autowired
 	protected HttpServletRequest request;
 

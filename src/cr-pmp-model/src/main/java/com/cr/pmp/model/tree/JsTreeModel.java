@@ -2,12 +2,23 @@ package com.cr.pmp.model.tree;
 
 import java.util.List;
 
+/**
+ * @描述 : 树
+ * @创建者：cr-pmp
+ * @创建时间： 2016年11月7日上午11:01:09
+ *
+ */
 public class JsTreeModel {
 
+	/** ID **/
 	private String id;
+	/** 文本 **/
 	private String text;
+	/** 图标 **/
 	private String icon = "sitemap";
+	/** 状态 **/
 	private State state = new State();
+	/** 下级集合 **/
 	private List<JsTreeModel> children;
 
 	public String getId() {

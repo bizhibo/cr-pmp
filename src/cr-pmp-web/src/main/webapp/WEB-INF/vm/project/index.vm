@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>项目</title>
+        <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="/style/css/plugins/iCheck/custom.css" rel="stylesheet"/>
+        <link href="/style/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+        <link href="/style/css/animate.min.css" rel="stylesheet"/>
+        <link href="/style/css/style.min.css" rel="stylesheet"/>
+    </head>
+    <body class="gray-bg">
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>项目列表</h5>
+                            <div class="ibox-tools">
+								<input type="button" data-toggle="modal" class="btn btn-primary btn-xs" value="创建新项目"  data-target="#addModal"/>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <div class="col-md-3">
+                                   <div class="radio i-checks">
+                                        <input type="radio" name="qstatus" value="0" checked/>
+                                        <i></i>
+											全部
+                                        <input type="radio" name="qstatus" value="1"/>
+                                        <i></i>
+											进行中
+                                        <input type="radio" name="qstatus" value="2"/>
+                                        <i></i>
+											已归档
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input id="qname" type="text" placeholder="请输入项目名称" class="input-sm form-control"/>
+                                        <span class="input-group-btn">
+                                            <button id="qbtn" type="button" class="btn btn-sm btn-primary">查询</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		  <div class="modal inmodal" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h5>添加菜单</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addForm" class="form-horizontal">
+							 <div class="form-group">
+                                <div class="col-sm-12" style="text-align: center;">
+                                    <img alt="image" style="width:113px;height:90px;" src="/style/img/illustration.png" />
+									<br/><br/>为不同的事务建立各自的项目
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input id="addName" placeholder="请输入项目名称" name="addName" type="text" class="form-control input-sm"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+						<button id="addbtn" type="button" class="btn btn-primary btn-block">保存</button>
+                        <button id="addclose" type="button" class="btn btn-white btn-block" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/style/js/jquery.min.js"></script>
+        <script src="/style/js/bootstrap.min.js"></script>
+        <script src="/style/js/content.min.js"></script>
+		<script src="/style/js/plugins/validate/jquery.validate.min.js"></script>
+        <script src="/style/js/plugins/validate/messages_zh.min.js"></script>
+        <script src="/style/js/plugins/iCheck/icheck.min.js"></script>
+        <script src="/style/js/plugins/sweetalert/sweetalert.min.js"></script>
+		<script src="/style/js/project/project.js"></script>
+    </body>
+</html>

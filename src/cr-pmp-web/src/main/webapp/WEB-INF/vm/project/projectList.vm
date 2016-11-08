@@ -1,0 +1,35 @@
+<table class="table table-hover">
+    <tbody>
+		#foreach($project in $pageList)
+        <tr>
+            <td class="project-status">
+				#if($!{project.status}==1)
+				<span class="label label-primary">进行中</span>
+				#elseif($!{project.status}==2)
+				<span class="label label-success">已归档</span>
+				#end
+            </td>
+            <td class="project-title">
+                <strong>$!{project.name}</strong>
+                <br/>
+                <small>创建于 $!dateUtils.formatDateTime($!{project.createTime})</small>
+            </td>
+            <td class="project-completion">
+                <small>当前进度： 48%</small>
+                <div class="progress progress-mini">
+                    <div style="width: 48%;" class="progress-bar"></div>
+                </div>
+            </td>
+            <td class="project-actions">
+                <a href="/project/project-board.do?pid=$!{project.id}" class="btn btn-white btn-sm">
+                    <i class="fa fa-folder"></i> 进入看板
+                </a>
+            </td>
+        </tr>
+		#end
+    </tbody>
+</table>
+<div>
+	#set($pageModule = $mainModule.getTarget("/project/page-list.do").addQueryData("name",$!params.get("name")).addQueryData("status",$!params.get("status")))
+	#showAjaxPage($pageModule $pageList)
+</div>

@@ -4,15 +4,29 @@ import java.util.List;
 
 import com.cr.pmp.common.base.BaseModel;
 
+/**
+ * @描述 : 菜单 
+ * @创建者：cr-pmp
+ * @创建时间： 2016年11月7日上午10:57:50
+ *
+ */
 public class Navigation extends BaseModel {
 
+	/** 菜单名称 **/
 	private String name;
+	/** 菜单等级（1级 2级 3级） **/
 	private int level;
+	/** 菜单类型（静态STATIC 动态DYNAMIC） **/
 	private String type;
+	/** 上级菜单ID **/
 	private int parentId;
+	/** 菜单url **/
 	private String url;
+	/** 菜单图标 **/
 	private String icon;
+	/** 菜单顺序 **/
 	private int sequence;
+	/** 下级菜单集合 **/
 	private List<Navigation> navList;
 
 	public String getName() {
