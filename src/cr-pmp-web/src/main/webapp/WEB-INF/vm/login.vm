@@ -83,7 +83,7 @@
 				dataType : "json",
 				success : function(result) {
 					if(result.resultCode==true){
-						window.location.href="/test/index.do";
+						window.location.href="/home/index.do";
 					}else{
 						toastr.error("登陆失败用户名密码错误!", "提示");
 					}

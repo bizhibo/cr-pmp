@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.cr.pmp.common.dict.SystemDict;
 import com.cr.pmp.common.utils.DateTimeConverter;
 import com.cr.pmp.common.utils.LogUtils;
 
@@ -106,4 +107,7 @@ public class BaseController {
 		return null;
 	}
 
+	public Object getLoginUserInfo() {
+		return request.getSession().getAttribute(SystemDict.USERSESSIONKEY);
+	}
 }

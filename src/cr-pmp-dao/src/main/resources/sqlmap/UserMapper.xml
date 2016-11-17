@@ -22,6 +22,10 @@
 		cr_pmp_user
 	</sql>
 
+	<sql id="deptTableName">
+		cr_pmp_dept
+	</sql>
+
 	<select id="login" parameterType="java.util.Map" resultType="user">
 		select
 		userName,name,birthday,sex,deptId,email,phone,position,portraitUrl
@@ -35,12 +39,16 @@
 		cpu.userName AS
 		userName,
 		cpu.name AS name,
-		cpu.position AS position,
+		cpu.position AS
+		position,
 		cpd.name AS
 		deptName
 		FROM
-		cr_pmp_user AS cpu
-		LEFT JOIN cr_pmp_dept AS cpd
+		<include refid="tableName" />
+		AS cpu
+		LEFT JOIN
+		<include refid="deptTableName" />
+		AS cpd
 		ON
 		cpu.deptId = cpd.id
 	</select>
@@ -49,7 +57,8 @@
 		SELECT
 		cpu.userName AS userName,
 		cpu.name AS name,
-		cpu.position AS position,
+		cpu.position AS
+		position,
 		cpu.birthday AS birthday,
 		cpu.sex AS sex,
 		cpu.email AS email,
@@ -57,8 +66,11 @@
 		cpu.portraitUrl AS portraitUrl,
 		cpd.name AS deptName
 		FROM
-		cr_pmp_user AS cpu
-		LEFT JOIN cr_pmp_dept AS cpd
+		<include refid="tableName" />
+		AS cpu
+		LEFT JOIN
+		<include refid="deptTableName" />
+		AS cpd
 		ON
 		cpu.deptId = cpd.id
 		WHERE
@@ -76,9 +88,11 @@
 		cpd.name AS
 		deptName
 		FROM
-		cr_pmp_user AS cpu
+		<include refid="tableName" />
+		AS cpu
 		LEFT JOIN
-		cr_pmp_dept AS cpd
+		<include refid="deptTableName" />
+		AS cpd
 		ON
 		cpu.deptId=cpd.id
 		<where>
@@ -129,4 +143,38 @@
 		<include refid="tableName" />
 		WHERE userName=#{userName}
 	</delete>
+	<update id="updUser" parameterType="user">
+		UPDATE
+		<include refid="tableName" />
+		SET modifyTime=now()
+		<if test="password!=null and password!=''">
+			,password=#{password}
+		</if>
+		<if test="name!=null and name!=''">
+			,name=#{name}
+		</if>
+		<if test="birthday!=null and birthday!=''">
+			,birthday=#{birthday}
+		</if>
+		<if test="sex!=null and sex!=''">
+			,sex=#{sex}
+		</if>
+		<if test="deptId!=null">
+			,deptId=#{deptId}
+		</if>
+		<if test="email!=null and email!=''">
+			,email=#{email}
+		</if>
+		<if test="phone!=null and phone!=''">
+			,phone=#{phone}
+		</if>
+		<if test="position!=null and position!=''">
+			,position=#{position}
+		</if>
+		<if test="portraitUrl!=null and portraitUrl!=''">
+			,portraitUrl=#{portraitUrl}
+		</if>
+		WHERE
+		userName=#{userName}
+	</update>
 </mapper>

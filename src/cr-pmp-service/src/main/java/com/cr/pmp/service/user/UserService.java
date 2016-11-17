@@ -34,4 +34,6 @@ public interface UserService {
 	public Result queryUserInfo(String userName);
 
 	public Result delUser(String userName);
+
+	public Result checkUserExist(Map<String, Object> params);
 }

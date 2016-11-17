@@ -3,7 +3,7 @@
     <header>
 		<h5>$!{board.name}</h5>
 		<div class="ibox-tools">
-			<a class="collapse-link pull-right" title="删除看板">
+			<a class="collapse-link pull-right" onclick="delBoard($!{board.id})" title="删除看板">
                 <i class="fa fa-trash"></i>
             </a>
 			<a class="collapse-link pull-right" title="添加任务" onclick="taskModal($!{board.id},'$!{board.name}')">
@@ -19,7 +19,7 @@
 		#foreach($task in $board.tasks)
         <li class="success-element" style="white-space: normal;" task="$!{task.id}">
 			$!{task.name}<br/>
-			执行人：$!{task.performer}<br/>
+			执行人：$!{task.performerName}<br/>
 			优先级：
 			#if($!{task.priority}==1)
 				<span class="badge badge-success">普通</span>
@@ -27,9 +27,11 @@
 				<span class="badge badge-warning">紧急</span>
 			#end
 			<br/>
-            <i class="fa fa-clock-o">预计完成时间:</i>
+            <i class="fa fa-clock-o">预计完成时间：</i>
 			$!dateUtils.formatDateTime($!{task.endDate})<br/>
-			<a href="#" class="btn btn-xs btn-danger">删除</a>
+			备注：$!{task.remarks}<br/>
+			<a href="#" class="btn btn-xs btn-danger" onclick="delTask($!{task.id})">删除</a>
+			<a href="#" class="btn btn-xs btn-info" onclick="subTaskModal($!{board.id},$!{task.id},'$!{task.name}')">管理子任务</a>
         </li>
 		#end
     </ul>

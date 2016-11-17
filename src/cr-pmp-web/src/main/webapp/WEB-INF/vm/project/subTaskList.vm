@@ -1,0 +1,26 @@
+#foreach($subTask in $subTaskList)
+<div class="col-sm-4">
+    <div class="ibox ">
+        <div class="ibox-content">
+			<div class="subtaskcss">
+				$!{subTask.name}<br/>
+				任务执行人：$!{subTask.performerName}<br/>
+				<i class="fa fa-clock-o">预计完成时间：$!dateUtils.formatDateTime($!{subTask.endDate})</i><br/>
+				任务备注：$!{subTask.remarks}<br/>
+				<a href="#"  onclick="delSubTask($!{subTask.id})" class="btn btn-xs btn-danger">删除</a>
+			</div>
+        </div>
+    </div>
+</div>
+#end
+<div class="col-sm-4">
+    <div class="ibox ">
+        <div class="ibox-content">
+			<div>
+				<a id="stbtn" href="#">
+					<span class="glyphicon glyphicon-plus">新建任务列表...</span>
+				</a>
+			</div>
+        </div>
+    </div>
+</div>

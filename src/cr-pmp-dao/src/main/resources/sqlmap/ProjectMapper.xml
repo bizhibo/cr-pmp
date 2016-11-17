@@ -10,8 +10,28 @@
 		modifyTime
 	</sql>
 
+	<sql id="leaguerFields">
+		id,
+		pid,
+		userName,
+		createTime,
+		modifyTime
+	</sql>
+
 	<sql id="tableName">
 		cr_pmp_project
+	</sql>
+
+	<sql id="leaguerTableName">
+		cr_pmp_project_leaguer
+	</sql>
+
+	<sql id="userTableName">
+		cr_pmp_user
+	</sql>
+
+	<sql id="deptTableName">
+		cr_pmp_dept
 	</sql>
 
 	<select id="queryProjectPageList" parameterType="java.util.Map"
@@ -45,7 +65,7 @@
 			</if>
 		</where>
 	</select>
-	<insert id="addProject" parameterType="project">
+	<insert id="addProject" parameterType="project" keyProperty="id" useGeneratedKeys="true">
 		INSERT
 		<include refid="tableName" />
 		(name,status,createTime,modifyTime)
@@ -56,4 +76,45 @@
 			SELECT @@IDENTITY
 		</selectKey>
 	</insert>
+	<select id="queryProjectLeguer" parameterType="java.lang.Integer"
+		resultType="projectLeaguer">
+		SELECT
+		cppl.id AS id,
+		cppl.pid AS pid,
+		cpu.userName AS userName,
+		cpu.name AS name,
+		cpu.position AS
+		position,
+		cpd.name AS deptName
+		FROM
+		<include refid="leaguerTableName" />
+		as cppl
+		LEFT JOIN
+		<include refid="userTableName" />
+		as cpu
+		ON cppl.userName = cpu.userName
+		LEFT JOIN
+		<include refid="deptTableName" />
+		as cpd
+		ON cpu.deptId = cpd.id
+		WHERE cppl.pid=#{pid}
+		ORDER BY cppl.id DESC
+	</select>
+	<insert id="addProjectLeguer" parameterType="projectLeaguer">
+		INSERT
+		<include refid="leaguerTableName" />
+		(pid,userName,createTime,modifyTime)
+		VALUES
+		(#{pid},#{userName},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+	<delete id="delProjectLeguer" parameterType="java.lang.Integer">
+		DELETE
+		FROM
+		<include refid="leaguerTableName" />
+		WHERE id=#{id}
+	</delete>
 </mapper>

@@ -41,28 +41,28 @@
                                     <div id="swfContainer" class="col-sm-3">
 										<input id="addFile" name="addFile" type="file" class="form-control" />
                                     </div>
-									<label class="col-sm-2 control-label">所属部门：</label>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>所属部门：</label>
                                     <div class="col-sm-3">
 										<input id="deptName" name="deptName" placeholder="点击选择所属部门"  type="text" class="form-control input-sm" readonly/>
 										<input id="addDeptId" name="addDeptId" type="hidden" />
 									</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">用户名：</label>
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>用户名：</label>
                                     <div class="col-sm-3">
                                         <input id="addUserName" name="addUserName" type="text" class="form-control input-sm"/>
                                     </div>
-									<label class="col-sm-2 control-label">密码：</label>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>密码：</label>
                                     <div class="col-sm-3">
                                         <input id="addPassword" name="addPassword" type="password" class="form-control input-sm"/>
                                     </div>
                                 </div>
 								 <div class="form-group">
-                                    <label class="col-sm-2 control-label">姓名：</label>
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>姓名：</label>
                                     <div class="col-sm-3">
     									<input id="addName" name="addName" type="text" class="form-control input-sm"/>
                                     </div>
-									<label class="col-sm-2 control-label">性别：</label>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>性别：</label>
                                     <div class="col-sm-3">
                                         <div class="radio i-checks">
                                             <input type="radio" name="addSex" value="男" checked/>
@@ -73,21 +73,21 @@
                                     </div>
                                 </div>
 								<div class="form-group">
-                                    <label class="col-sm-2 control-label">生日：</label>
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>生日：</label>
                                     <div class="col-sm-3">
                                         <input id="addBirthday" name="addBirthday" class="form-control input-sm" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD',istime: false,festival: true})" />
                                     </div>
-									<label class="col-sm-2 control-label">职位：</label>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>职位：</label>
                                     <div class="col-sm-3">
                                         <input id="addPosition" name="addPosition" type="text" class="form-control input-sm"/>
                                     </div>
                                  </div>
 								 <div class="form-group">
-                                    <label class="col-sm-2 control-label">邮箱：</label>
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>邮箱：</label>
                                     <div class="col-sm-3">
                                         <input id="addEmail" name="addEmail" type="text" class="form-control input-sm"/>
                                     </div>
-									<label class="col-sm-2 control-label">手机号：</label>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>手机号：</label>
                                     <div class="col-sm-3">
                                         <input id="addPhone" name="addPhone" type="text" class="form-control input-sm"/>
                                     </div>

@@ -19,3 +19,11 @@
 	overflow: hidden;
 	white-space: normal;
 }
+
+.subtaskcss {
+	word-wrap: break-word;
+	word-break: break-all;
+	width: 260px;
+	height: 100px;
+	overflow: auto;
+}

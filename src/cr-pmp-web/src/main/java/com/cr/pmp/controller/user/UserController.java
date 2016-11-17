@@ -13,6 +13,7 @@ import com.cr.pmp.common.base.BaseController;
 import com.cr.pmp.common.dict.FilePathDict;
 import com.cr.pmp.common.result.Result;
 import com.cr.pmp.common.utils.DateUtils;
+import com.cr.pmp.common.utils.SecurityUtils;
 import com.cr.pmp.common.utils.UUIDUtils;
 import com.cr.pmp.model.user.User;
 import com.cr.pmp.service.user.UserService;
@@ -56,21 +57,24 @@ public class UserController extends BaseController {
 			String password, String name, String birthday, String sex,
 			String deptId, String email, String phone, String position)
 			throws Exception {
-		String path = request.getSession().getServletContext()
-				.getRealPath(FilePathDict.USERFILEPATH);
-		StringBuffer fileName = new StringBuffer(UUIDUtils.upperUUID())
-				.append(addFile.getOriginalFilename());
-		File targetFile = new File(path, fileName.toString());
-		if (!targetFile.exists()) {
-			targetFile.mkdirs();
+		StringBuffer fileName = new StringBuffer("default-avatar.jpg");
+		if (addFile.getSize() > 0) {
+			String path = request.getSession().getServletContext()
+					.getRealPath(FilePathDict.USERFILEPATH);
+			fileName = new StringBuffer(UUIDUtils.upperUUID()).append(addFile
+					.getOriginalFilename());
+			File targetFile = new File(path, fileName.toString());
+			if (!targetFile.exists()) {
+				targetFile.mkdirs();
+			}
+			addFile.transferTo(targetFile);
 		}
-		addFile.transferTo(targetFile);
 		User user = new User();
 		user.setBirthday(DateUtils.parseDate(birthday));
 		user.setDeptId(Integer.valueOf(deptId));
 		user.setEmail(email);
 		user.setName(name);
-		user.setPassword(password);
+		user.setPassword(SecurityUtils.md5(password));
 		user.setPhone(phone);
 		user.setPosition(position);
 		user.setUserName(userName);
@@ -92,6 +96,13 @@ public class UserController extends BaseController {
 	public String delUser() {
 		Result result = userService.delUser(this.getParams("userName")
 				.toString());
+		return result.toJson();
+	}
+
+	@RequestMapping("/check-user-exist")
+	@ResponseBody
+	public String checkUserExist() {
+		Result result = userService.checkUserExist(this.getParams());
 		return result.toJson();
 	}
 }

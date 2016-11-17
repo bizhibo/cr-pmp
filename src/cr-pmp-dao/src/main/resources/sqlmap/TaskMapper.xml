@@ -11,6 +11,21 @@
 		<association property="tasks" column="id" select="queryTaskByTbid" />
 	</resultMap>
 
+	<resultMap type="task" id="taskMap">
+		<result property="id" column="id" />
+		<result property="pid" column="pid" />
+		<result property="name" column="name" />
+		<result property="tbid" column="tbid" />
+		<result property="performer" column="performer" />
+		<result property="endDate" column="endDate" />
+		<result property="priority" column="priority" />
+		<result property="remarks" column="remarks" />
+		<result property="performerName" column="performerName" />
+		<result property="createTime" column="createTime" />
+		<result property="modifyTime" column="modifyTime" />
+		<association property="subTasks" column="id" select="querySubTaskByTid" />
+	</resultMap>
+
 	<sql id="taskBoardFields">
 		id,
 		pid,
@@ -37,6 +52,7 @@
 		tid,
 		tbid,
 		pid,
+		name,
 		remarks,
 		performer,
 		endDate,
@@ -56,6 +72,10 @@
 		cr_pmp_sub_task
 	</sql>
 
+	<sql id="userTableName">
+		cr_pmp_user
+	</sql>
+
 	<select id="queryTaskBoardByPid" parameterType="java.lang.Integer"
 		resultMap="taskBoardMap">
 		SELECT
@@ -68,10 +88,88 @@
 	<select id="queryTaskByTbid" parameterType="java.lang.Integer"
 		resultType="task">
 		SELECT
+		cpt.id AS id,
+		cpt.pid AS pid,
+		cpt.tbid AS tbid,
+		cpt.name AS name,
+		cpt.performer AS performer,
+		cpt.endDate AS endDate,
+		cpt.priority AS
+		priority,
+		cpt.remarks AS remarks,
+		cpt.createTime AS createTime,
+		cpt.modifyTime AS modifyTime,
+		cpu.name AS performerName
+		FROM
+		<include refid="taskTableName" />
+		AS cpt
+		LEFT JOIN
+		<include refid="userTableName" />
+		AS cpu
+		ON cpt.performer=cpu.userName
+		WHERE cpt.tbid=#{tbid} ORDER BY
+		cpt.endDate ASC
+	</select>
+
+	<select id="queryTaskByPid" parameterType="java.lang.Integer"
+		resultMap="taskMap">
+		SELECT
+		cpt.id AS id,
+		cpt.pid AS pid,
+		cpt.tbid AS tbid,
+		cpt.name AS name,
+		cpt.performer AS performer,
+		cpt.endDate AS endDate,
+		cpt.priority AS
+		priority,
+		cpt.remarks AS remarks,
+		cpt.createTime AS createTime,
+		cpt.modifyTime AS modifyTime,
+		cpu.name AS performerName
+		FROM
+		<include refid="taskTableName" />
+		AS cpt
+		LEFT JOIN
+		<include refid="userTableName" />
+		AS cpu
+		ON cpt.performer=cpu.userName
+		WHERE cpt.pid=#{pid} ORDER BY
+		cpt.endDate ASC
+	</select>
+
+	<select id="querySubTaskByTid" parameterType="java.lang.Integer"
+		resultType="subTask">
+		SELECT
+		cpst.id AS id,
+		cpst.tid AS tid,
+		cpst.tbid AS tbid,
+		cpst.pid AS pid,
+		cpst.name AS name,
+		cpst.remarks AS remarks,
+		cpst.performer AS performer,
+		cpst.endDate AS endDate,
+		cpst.createTime AS createTime,
+		cpst.modifyTime
+		AS modifyTime,
+		cpu.name AS performerName
+		FROM
+		<include refid="subTaskTableName" />
+		AS cpst
+		LEFT JOIN
+		<include refid="userTableName" />
+		AS cpu
+		ON cpst.performer=cpu.userName
+		WHERE cpst.tid=#{tid} ORDER BY
+		cpst.endDate ASC
+	</select>
+
+	<select id="queryTaskById" parameterType="java.lang.Integer"
+		resultType="task">
+		SELECT
 		<include refid="taskFields" />
 		FROM
 		<include refid="taskTableName" />
-		WHERE tbid=#{tbid} ORDER BY endDate ASC
+		WHERE id=#{id}
 	</select>
 
 	<insert id="addTaskBoard" parameterType="taskBoard">
@@ -98,7 +196,7 @@
 		</selectKey>
 	</insert>
 
-	<update id="updateTask" parameterType="task">
+	<update id="updTask" parameterType="task">
 		UPDATE
 		<include refid="taskTableName" />
 		SET modifyTime=now()
@@ -125,18 +223,42 @@
 	<insert id="addSubTask" parameterType="subTask">
 		INSERT
 		<include refid="subTaskTableName" />
-		(tid,tbid,pid,performer,endDate,remarks,createTime,modifyTime)
+		(tid,tbid,pid,name,performer,endDate,remarks,createTime,modifyTime)
 		VALUES
-		(#{tid},#{tbid},#{pid},#{performer},#{endDate},#{remarks},now(),now())
+		(#{tid},#{tbid},#{pid},#{name},#{performer},#{endDate},#{remarks},now(),now())
 		<selectKey resultType="java.lang.Integer" keyProperty="id"
 			order="AFTER">
 			SELECT @@IDENTITY
 		</selectKey>
 	</insert>
-	<delete id="deleteTaskBoard">
+	<delete id="delTaskBoard" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="taskBoardTableName" />
+		WHERE id=#{id}
 	</delete>
-	<delete id="deleteTask">
+	<delete id="delTask" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="taskTableName" />
+		WHERE id=#{id}
 	</delete>
-	<delete id="deleteSubTask">
+	<delete id="delSubTask" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="subTaskTableName" />
+		WHERE id=#{id}
+	</delete>
+	<delete id="delTaskByTBid" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="taskTableName" />
+		WHERE tbid=#{tbid}
+	</delete>
+	<delete id="delSubTaskByTBid" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="subTaskTableName" />
+		WHERE tbid=#{tbid}
+	</delete>
+	<delete id="delSubTaskByTid" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="subTaskTableName" />
+		WHERE tid=#{tid}
 	</delete>
 </mapper>

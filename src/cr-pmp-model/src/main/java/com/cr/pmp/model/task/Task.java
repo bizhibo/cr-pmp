@@ -1,6 +1,7 @@
 package com.cr.pmp.model.task;
 
 import java.util.Date;
+import java.util.List;
 
 import com.cr.pmp.common.base.BaseModel;
 
@@ -20,12 +21,16 @@ public class Task extends BaseModel {
 	private String name;
 	/** 执行人 **/
 	private String performer;
+	/** 执行人姓名 **/
+	private String performerName;
 	/** 结束时间 **/
 	private Date endDate;
 	/** 优先级（1普通 2紧急） **/
 	private int priority;
 	/** 任务备注 **/
 	private String remarks;
+	/** 子任务集合 **/
+	private List<SubTask> subTasks;
 
 	public int getPid() {
 		return pid;
@@ -81,6 +86,22 @@ public class Task extends BaseModel {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public String getPerformerName() {
+		return performerName;
+	}
+
+	public void setPerformerName(String performerName) {
+		this.performerName = performerName;
+	}
+
+	public List<SubTask> getSubTasks() {
+		return subTasks;
+	}
+
+	public void setSubTasks(List<SubTask> subTasks) {
+		this.subTasks = subTasks;
 	}
 
 }

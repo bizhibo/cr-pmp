@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cr.pmp.common.dict.SystemDict;
 import com.cr.pmp.common.result.Result;
 import com.cr.pmp.common.utils.LogUtils;
 import com.cr.pmp.common.utils.PaginatedArrayList;
@@ -31,7 +32,8 @@ public class UserServiceImpl implements UserService {
 			params.put("password", md5PW);
 			User user = userDao.login(params);
 			if (user != null) {
-				session.setAttribute("userInfo", user);
+				session.setAttribute(SystemDict.USERSESSIONKEY, user);
+				session.setMaxInactiveInterval(60 * 120);
 				result.setResultCode(true);
 				result.setMessage("登陆成功!");
 			} else {
@@ -124,6 +126,21 @@ public class UserServiceImpl implements UserService {
 				result.setResultCode(true);
 			} else {
 				result.setResultCode(false);
+			}
+		} catch (Exception e) {
+			result.setResultCode(false);
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result checkUserExist(Map<String, Object> params) {
+		Result result = new Result();
+		try {
+			Integer flag = userDao.queryCount(params);
+			if (flag > 0) {
+				result.setResultCode("exist");
 			}
 		} catch (Exception e) {
 			result.setResultCode(false);

@@ -33,11 +33,39 @@ $(function() {
 		$("#closebtn").trigger("click");
 	});
 
+	jQuery.validator.addMethod("checkUserExist", function(value, element) {
+		var flag = 1;
+		$.ajax({
+			url : "/user/check-user-exist.do",
+			type : "post",
+			async : false,
+			data : {
+				"userName" : value
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result.resultCode == "exist") {
+					flag = 0;
+				}
+			},
+			error : function() {
+				swal("提示", "系统异常,请联系管理员!", "warning");
+				return;
+			}
+		});
+		if (flag == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}, "<i class='fa fa-times-circle'></i>  用户名已经存在");
+
 	var check = $("#addForm").validate({
 		rules : {
 			addUserName : {
 				required : true,
-				maxlength : 20
+				maxlength : 20,
+				checkUserExist : true
 			},
 			deptName : {
 				required : true
@@ -86,7 +114,7 @@ $(function() {
 			"phone" : $("#addPhone").val(),
 			"position" : $("#addPosition").val()
 		};
-		 $.ajaxFileUpload({
+		$.ajaxFileUpload({
 			url : "/user/add-user.do",
 			type : "post",
 			secureuri : false,

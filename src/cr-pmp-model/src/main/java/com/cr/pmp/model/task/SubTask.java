@@ -18,10 +18,14 @@ public class SubTask extends BaseModel {
 	private int tbid;
 	/** 项目ID **/
 	private int pid;
+	/** 子任务名称 **/
+	private String name;
 	/** 子任务备注 **/
 	private String remarks;
 	/** 执行人 **/
 	private String performer;
+	/** 执行人姓名 **/
+	private String performerName;
 	/** 结束时间 **/
 	private Date endDate;
 
@@ -71,6 +75,22 @@ public class SubTask extends BaseModel {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public String getPerformerName() {
+		return performerName;
+	}
+
+	public void setPerformerName(String performerName) {
+		this.performerName = performerName;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

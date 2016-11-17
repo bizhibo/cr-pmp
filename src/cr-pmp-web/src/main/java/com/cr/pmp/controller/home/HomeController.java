@@ -18,6 +18,7 @@ public class HomeController extends BaseController {
 	@RequestMapping("/index")
 	public Result index() {
 		Result result = homeService.index();
+		result.addObject("userInfo", this.getLoginUserInfo());
 		result.setViewName("/index");
 		return result;
 	}

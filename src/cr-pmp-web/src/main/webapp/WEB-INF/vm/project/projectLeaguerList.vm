@@ -1,0 +1,25 @@
+#foreach($projectLeaguer in $projectLeaguers)
+<div class="col-sm-4">
+    <div class="ibox ">
+        <div class="ibox-content">
+			<div class="subtaskcss">
+				姓名：$!{projectLeaguer.name}<br/>
+				部门：$!{projectLeaguer.deptName}<br/>
+				职位：$!{projectLeaguer.position}<br/>
+				<a href="#"  onclick=" delPL($!{projectLeaguer.id})" class="btn btn-xs btn-danger">删除</a>
+			</div>
+        </div>
+    </div>
+</div>
+#end
+<div class="col-sm-4">
+    <div class="ibox ">
+        <div class="ibox-content">
+			<div>
+				<a id="plbtn" href="#">
+					<span class="glyphicon glyphicon-plus">添加人员...</span>
+				</a>
+			</div>
+        </div>
+    </div>
+</div>

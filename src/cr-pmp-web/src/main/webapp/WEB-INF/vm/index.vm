@@ -24,28 +24,22 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="/style/img/profile_small.jpg" /></span>
+                            <span><img alt="image" style="width:64px;height:64px;" class="img-circle" src="$!{userInfo.portraitUrl}" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                               <span class="block m-t-xs"><strong class="font-bold">$!{userInfo.name}</strong></span>
+                                <span class="text-muted text-xs block">$!{userInfo.position}<b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="#">修改头像</a>
-                                </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
-                                </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                                <li><a id="updPW" href="#">修改密码</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
+                                <li><a href="/logout.do">安全退出</a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="logo-element">H+
+                        <div class="logo-element">CR
                         </div>
                     </li>
 					#foreach($nav1 in $treeNav)
@@ -209,7 +203,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                <a href="/logout.do" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/nav/index.do" frameborder="0" data-id="/nav/index.do" seamless></iframe>
@@ -221,6 +215,39 @@
         </div>
         <!--右侧部分结束-->
     </div>
+	
+	<div class="modal inmodal" id="updPWModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h5>修改密码</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="updPWForm" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input id="oldPW" placeholder="请输入原密码" name="oldPW" type="text" class="form-control input-sm"/>
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <div class="col-sm-12">
+                                <input id="newPW" placeholder="请输入新密码" name="newPW" type="text" class="form-control input-sm"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input id="userName" type="hidden" value="$!{userInfo.userName}" />
+					<button id="updPWbtn" type="button" class="btn btn-primary btn-block">保存</button>
+                    <button id="updPWclose" type="button" class="btn btn-white btn-block" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="/style/js/jquery.min.js"></script>
     <script src="/style/js/bootstrap.min.js"></script>
     <script src="/style/js/plugins/metisMenu/jquery.metisMenu.js"></script>
@@ -229,5 +256,6 @@
     <script src="/style/js/hplus.min.js"></script>
     <script src="/style/js/contabs.min.js"></script>
     <script src="/style/js/plugins/pace/pace.min.js"></script>
+	<script src="/style/js/index.js"></script>
 </body>
 </html>

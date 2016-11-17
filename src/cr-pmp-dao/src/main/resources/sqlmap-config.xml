@@ -18,6 +18,7 @@
 		<typeAlias alias="taskBoard" type="com.cr.pmp.model.task.TaskBoard" />
 		<typeAlias alias="task" type="com.cr.pmp.model.task.Task" />
 		<typeAlias alias="subTask" type="com.cr.pmp.model.task.SubTask" />
+		<typeAlias alias="projectLeaguer" type="com.cr.pmp.model.project.ProjectLeaguer" />
 	</typeAliases>
 	<!-- sqlmap 映射器 -->
 	<mappers>

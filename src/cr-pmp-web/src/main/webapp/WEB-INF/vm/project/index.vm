@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>项目</title>
+        <title>项目管理</title>
         <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
 		<link href="/style/css/plugins/iCheck/custom.css" rel="stylesheet"/>
@@ -92,6 +92,7 @@
         <script src="/style/js/plugins/validate/messages_zh.min.js"></script>
         <script src="/style/js/plugins/iCheck/icheck.min.js"></script>
         <script src="/style/js/plugins/sweetalert/sweetalert.min.js"></script>
+		<script src="/style/js/plugins/layer/layer.min.js"></script>
 		<script src="/style/js/project/project.js"></script>
     </body>
 </html>

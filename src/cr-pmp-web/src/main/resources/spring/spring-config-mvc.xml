@@ -30,10 +30,13 @@
 		</property>
 		<property name="writeAcceptCharset" value="false" />
 	</bean>
-	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**" /> <bean 
-		class="com.ezt.erp.web.interceptor.LoginInterceptor" /> </mvc:interceptor> 
-		<mvc:interceptor> <mvc:mapping path="/**" /> <bean class="com.ezt.erp.web.interceptor.RuleInterceptor" 
-		/> </mvc:interceptor> </mvc:interceptors> -->
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.cr.pmp.interceptor.login.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- 模板信息设置 -->
 	<bean id="velocityConfigurer"

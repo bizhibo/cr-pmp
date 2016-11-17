@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cr.pmp.common.result.Result;
 import com.cr.pmp.common.utils.LogUtils;
@@ -12,6 +13,7 @@ import com.cr.pmp.common.utils.PaginatedArrayList;
 import com.cr.pmp.common.utils.PaginatedList;
 import com.cr.pmp.dao.project.ProjectDao;
 import com.cr.pmp.model.project.Project;
+import com.cr.pmp.model.project.ProjectLeaguer;
 import com.cr.pmp.service.project.ProjectService;
 
 @Service("projectService")
@@ -51,10 +53,32 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Result addProject(Project project) {
+	@Transactional
+	public Result addProject(Project project, String userName) {
 		Result result = new Result();
 		try {
 			int flag = projectDao.addProject(project);
+			if (flag > 0) {
+				ProjectLeaguer projectLeaguer = new ProjectLeaguer();
+				projectLeaguer.setPid(project.getId());
+				projectLeaguer.setUserName(userName);
+				projectDao.addProjectLeguer(projectLeaguer);
+				result.setResultCode(true);
+			} else {
+				result.setResultCode(false);
+			}
+		} catch (Exception e) {
+			result.setResultCode(false);
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result addProjectLeguer(ProjectLeaguer projectLeaguer) {
+		Result result = new Result();
+		try {
+			int flag = projectDao.addProjectLeguer(projectLeaguer);
 			if (flag > 0) {
 				result.setResultCode(true);
 			} else {
@@ -67,4 +91,34 @@ public class ProjectServiceImpl implements ProjectService {
 		return result;
 	}
 
+	@Override
+	public Result delProjectLeguer(Integer id) {
+		Result result = new Result();
+		try {
+			int flag = projectDao.delProjectLeguer(id);
+			if (flag > 0) {
+				result.setResultCode(true);
+			} else {
+				result.setResultCode(false);
+			}
+		} catch (Exception e) {
+			result.setResultCode(false);
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result queryProjectLeguer(Integer pid) {
+		Result result = new Result();
+		try {
+			List<ProjectLeaguer> projectLeaguers = projectDao
+					.queryProjectLeguer(pid);
+			result.addObject("projectLeaguers", projectLeaguers);
+			result.addObject("pid", pid);
+		} catch (Exception e) {
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
 }
