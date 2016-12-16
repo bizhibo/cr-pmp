@@ -27,6 +27,8 @@
 				<span class="badge badge-warning">紧急</span>
 			#end
 			<br/>
+			 <i class="fa fa-clock-o">预计开始时间：</i>
+			$!dateUtils.formatDateTime($!{task.startDate})<br/>
             <i class="fa fa-clock-o">预计完成时间：</i>
 			$!dateUtils.formatDateTime($!{task.endDate})<br/>
 			备注：$!{task.remarks}<br/>

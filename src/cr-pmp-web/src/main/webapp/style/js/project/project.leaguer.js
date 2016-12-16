@@ -1,9 +1,37 @@
 $(function() {
 	queryPLList();
+	jQuery.validator.addMethod("checkLeaguerExist", function(value, element) {
+		var flag = 1;
+		$.ajax({
+			url : "/project/check-leaguer-exist.do",
+			type : "post",
+			async : false,
+			data : {
+				"userName" : value,
+				"pid" : $("#pid").val()
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result.resultCode == "exist") {
+					flag = 0;
+				}
+			},
+			error : function() {
+				swal("提示", "系统异常,请联系管理员!", "warning");
+				return;
+			}
+		});
+		if (flag == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}, "<i class='fa fa-times-circle'></i>  该用户已经加入,请重新选择");
 	var check = $("#addForm").validate({
 		rules : {
 			addUserName : {
-				required : true
+				required : true,
+				checkLeaguerExist : true
 			}
 		}
 	});

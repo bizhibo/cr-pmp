@@ -121,4 +121,19 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return result;
 	}
+
+	@Override
+	public Result checkLeaguerExist(Map<String, Object> params) {
+		Result result = new Result();
+		try {
+			ProjectLeaguer projectLeaguer = projectDao
+					.queryProjectLeguerByUser(params);
+			if (projectLeaguer != null) {
+				result.setResultCode("exist");
+			}
+		} catch (Exception e) {
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
 }

@@ -33,9 +33,6 @@ function selectPage(url) {
 		}
 	});
 }
-function getInfo(userName) {
-	window.location.href = "/user/user-Info.do?userName=" + userName;
-}
 function del(userName) {
 	swal({
 		title : "您确定要删除这条信息吗",

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>修改用户</title>
+        <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="/style/css/plugins/jsTree/style.min.css" rel="stylesheet"/>
+		<link href="/style/css/plugins/iCheck/custom.css" rel="stylesheet"/>
+        <link href="/style/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+        <link href="/style/css/animate.min.css" rel="stylesheet"/>
+        <link href="/style/css/style.min.css" rel="stylesheet"/>
+    </head>
+    <body class="gray-bg">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>用户表单</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+								<a id="updbtn" href="#" class="dropdown-toggle" title="保存">
+                                    <i class="fa fa-save"></i>
+                                </a>
+								<a href="/user/index.do" class="dropdown-toggle" title="返回上一页">
+                                    <i class="fa fa-mail-reply"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form id="updForm" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>所属部门：</label>
+                                    <div class="col-sm-3">
+										<input id="deptName" name="deptName" value="$!{user.deptName}"  type="text" class="form-control input-sm" readonly/>
+										<input id="updDeptId" name="updDeptId" value="$!{user.deptId}" type="hidden" />
+									</div>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>用户名：</label>
+                                    <div class="col-sm-3">
+                                        <input id="updUserName" name="updUserName" value="$!{user.userName}" type="text" class="form-control input-sm" readonly/>
+                                    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>姓名：</label>
+                                    <div class="col-sm-3">
+    									<input id="updName" name="updName" value="$!{user.name}" type="text" class="form-control input-sm"/>
+                                    </div>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>性别：</label>
+                                    <div class="col-sm-3">
+                                        <div class="radio i-checks">
+                                            <input type="radio" name="updSex" value="男"  #if($!{user.sex}=="男") checked #end/>
+                                            <i></i>男
+                                            <input type="radio" name="updSex" value="女"  #if($!{user.sex}=="女") checked #end/>
+                                            <i></i>女
+										</div>
+                                    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>生日：</label>
+                                    <div class="col-sm-3">
+                                        <input id="updBirthday" name="updBirthday" value="$!dateUtils.formatDate($!{user.birthday})" class="form-control input-sm" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD',istime: false,festival: true})" />
+                                    </div>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>职位：</label>
+                                    <div class="col-sm-3">
+                                        <input id="updPosition" name="updPosition" value="$!{user.position}" type="text" class="form-control input-sm"/>
+                                    </div>
+                                 </div>
+								 <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span style="color:red;">*</span>邮箱：</label>
+                                    <div class="col-sm-3">
+                                        <input id="updEmail" name="updEmail" value="$!{user.email}" type="text" class="form-control input-sm"/>
+                                    </div>
+									<label class="col-sm-2 control-label"><span style="color:red;">*</span>手机号：</label>
+                                    <div class="col-sm-3">
+                                        <input id="updPhone" name="updPhone" value="$!{user.phone}" type="text" class="form-control input-sm"/>
+                                    </div>
+                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="modal inmodal" id="deptModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h5>部门结构</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div id="dept_tree"></div>
+                    </div>
+                    <div class="modal-footer">
+						<button id="deptbtn" type="button" class="btn btn-primary btn-block">保存</button>
+                        <button id="closebtn" type="button" class="btn btn-white btn-block" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/style/js/jquery.min.js"></script>
+        <script src="/style/js/bootstrap.min.js"></script>
+        <script src="/style/js/content.min.js"></script>
+		<script src="/style/js/plugins/iCheck/icheck.min.js"></script>
+        <script src="/style/js/plugins/validate/jquery.validate.min.js"></script>
+        <script src="/style/js/plugins/validate/messages_zh.min.js"></script>
+        <script src="/style/js/plugins/sweetalert/sweetalert.min.js"></script>
+		<script src="/style/js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+		<script src="/style/js/plugins/layer/laydate/laydate.js"></script>
+		<script src="/style/js/plugins/jsTree/jstree.min.js"></script>
+		<script src="/style/js/ajaxfileupload.js"></script>
+		<script src="/style/js/user/user.upd.js"></script>
+    </body>
+</html>

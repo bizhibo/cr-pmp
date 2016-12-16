@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 				result.setMessage("用户名或密码错误!");
 			}
 		} catch (Exception e) {
-			LogUtils.error("登陆异常", e);
+			LogUtils.error(e.getMessage(), e);
 		}
 		return result;
 	}
@@ -141,6 +141,42 @@ public class UserServiceImpl implements UserService {
 			Integer flag = userDao.queryCount(params);
 			if (flag > 0) {
 				result.setResultCode("exist");
+			}
+		} catch (Exception e) {
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result checkPassword(Map<String, Object> params) {
+		Result result = new Result();
+		try {
+			String md5PW = SecurityUtils.md5(params.get("password").toString());
+			params.put("password", md5PW);
+			User user = userDao.login(params);
+			if (user != null) {
+				result.setResultCode(true);
+			} else {
+				result.setResultCode(false);
+			}
+		} catch (Exception e) {
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result updUser(User user) {
+		Result result = new Result();
+		try {
+			String md5PW = SecurityUtils.md5(user.getPassword());
+			user.setPassword(md5PW);
+			Integer flag = userDao.updUser(user);
+			if (flag > 0) {
+				result.setResultCode(true);
+			} else {
+				result.setResultCode(false);
 			}
 		} catch (Exception e) {
 			result.setResultCode(false);

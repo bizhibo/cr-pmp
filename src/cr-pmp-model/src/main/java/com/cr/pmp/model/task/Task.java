@@ -23,6 +23,8 @@ public class Task extends BaseModel {
 	private String performer;
 	/** 执行人姓名 **/
 	private String performerName;
+	/** 开始时间 **/
+	private Date startDate;
 	/** 结束时间 **/
 	private Date endDate;
 	/** 优先级（1普通 2紧急） **/
@@ -102,6 +104,14 @@ public class Task extends BaseModel {
 
 	public void setSubTasks(List<SubTask> subTasks) {
 		this.subTasks = subTasks;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 }

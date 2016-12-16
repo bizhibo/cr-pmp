@@ -183,4 +183,11 @@ public class ProjectController extends BaseController {
 				.toString()), this.getParams("pname").toString(), request,
 				response);
 	}
+
+	@RequestMapping("/check-leaguer-exist")
+	@ResponseBody
+	public String checkLeaguerExist() {
+		Result result = projectService.checkLeaguerExist(this.getParams());
+		return result.toJson();
+	}
 }

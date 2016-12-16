@@ -11,6 +11,7 @@
     <![endif]-->
     <link href="/style/css/bootstrap.min.css" rel="stylesheet">
     <link href="/style/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/style/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <link href="/style/css/animate.min.css" rel="stylesheet">
     <link href="/style/css/style.min.css" rel="stylesheet">
 </head>
@@ -253,6 +254,9 @@
     <script src="/style/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/style/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="/style/js/plugins/layer/layer.min.js"></script>
+	<script src="/style/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="/style/js/plugins/validate/messages_zh.min.js"></script>
+	<script src="/style/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="/style/js/hplus.min.js"></script>
     <script src="/style/js/contabs.min.js"></script>
     <script src="/style/js/plugins/pace/pace.min.js"></script>

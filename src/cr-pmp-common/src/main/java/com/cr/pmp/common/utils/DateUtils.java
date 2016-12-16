@@ -1,5 +1,6 @@
 package com.cr.pmp.common.utils;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -129,6 +130,33 @@ public class DateUtils {
 				return DATE_FORMAT.parse(date);
 			}
 		} catch (ParseException e) {
+			LogUtils.error(e.getMessage(), e);
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * @描述 : 计算相隔天数 保留一位小数
+	 * @创建者：liushengsong
+	 * @创建时间： 2016年11月18日上午11:28:22
+	 *
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	public static String getIntervalDays(Date startDate, Date endDate)
+			throws RuntimeException {
+		try {
+			if (startDate == null || endDate == null) {
+				return null;
+			}
+			BigDecimal startMilli = new BigDecimal(startDate.getTime());
+			BigDecimal endMilli = new BigDecimal(endDate.getTime());
+			BigDecimal intervalDays = endMilli.subtract(startMilli).divide(
+					new BigDecimal(24 * 60 * 60 * 1000), 1,
+					BigDecimal.ROUND_HALF_UP);
+			return intervalDays.toString();
+		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}

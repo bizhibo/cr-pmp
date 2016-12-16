@@ -74,7 +74,7 @@ function openPL(pid, pname) {
 		title : "所属项目：" + pname,
 		shadeClose : true,
 		shade : false,
-		maxmin : true, // 开启最大化最小化按钮
+		maxmin : false, // 开启最大化最小化按钮
 		area : [ "1000px", "600px" ],
 		content : "/project/project-leaguer-index.do?pid=" + pid
 	});

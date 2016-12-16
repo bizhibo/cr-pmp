@@ -17,6 +17,7 @@
 		<result property="name" column="name" />
 		<result property="tbid" column="tbid" />
 		<result property="performer" column="performer" />
+		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
 		<result property="priority" column="priority" />
 		<result property="remarks" column="remarks" />
@@ -40,6 +41,7 @@
 		tbid,
 		name,
 		performer,
+		startDate,
 		endDate,
 		priority,
 		remarks,
@@ -55,6 +57,7 @@
 		name,
 		remarks,
 		performer,
+		startDate,
 		endDate,
 		createTime,
 		modifyTime
@@ -93,6 +96,7 @@
 		cpt.tbid AS tbid,
 		cpt.name AS name,
 		cpt.performer AS performer,
+		cpt.startDate AS startDate,
 		cpt.endDate AS endDate,
 		cpt.priority AS
 		priority,
@@ -119,6 +123,7 @@
 		cpt.tbid AS tbid,
 		cpt.name AS name,
 		cpt.performer AS performer,
+		cpt.startDate AS startDate,
 		cpt.endDate AS endDate,
 		cpt.priority AS
 		priority,
@@ -147,6 +152,7 @@
 		cpst.name AS name,
 		cpst.remarks AS remarks,
 		cpst.performer AS performer,
+		cpst.startDate AS startDate,
 		cpst.endDate AS endDate,
 		cpst.createTime AS createTime,
 		cpst.modifyTime
@@ -187,9 +193,9 @@
 	<insert id="addTask" parameterType="task">
 		INSERT
 		<include refid="taskTableName" />
-		(pid,tbid,name,performer,endDate,priority,remarks,createTime,modifyTime)
+		(pid,tbid,name,performer,startDate,endDate,priority,remarks,createTime,modifyTime)
 		VALUES
-		(#{pid},#{tbid},#{name},#{performer},#{endDate},#{priority},#{remarks},now(),now())
+		(#{pid},#{tbid},#{name},#{performer},#{startDate},#{endDate},#{priority},#{remarks},now(),now())
 		<selectKey resultType="java.lang.Integer" keyProperty="id"
 			order="AFTER">
 			SELECT @@IDENTITY
@@ -212,6 +218,9 @@
 		<if test="endDate!=null and endDate!=''">
 			,endDate=#{endDate}
 		</if>
+		<if test="startDate!=null and startDate!=''">
+			,startDate=#{startDate}
+		</if>
 		<if test="priority!=null and priority!=0">
 			,priority=#{priority}
 		</if>
@@ -223,9 +232,9 @@
 	<insert id="addSubTask" parameterType="subTask">
 		INSERT
 		<include refid="subTaskTableName" />
-		(tid,tbid,pid,name,performer,endDate,remarks,createTime,modifyTime)
+		(tid,tbid,pid,name,performer,startDate,endDate,remarks,createTime,modifyTime)
 		VALUES
-		(#{tid},#{tbid},#{pid},#{name},#{performer},#{endDate},#{remarks},now(),now())
+		(#{tid},#{tbid},#{pid},#{name},#{performer},#{startDate},#{endDate},#{remarks},now(),now())
 		<selectKey resultType="java.lang.Integer" keyProperty="id"
 			order="AFTER">
 			SELECT @@IDENTITY

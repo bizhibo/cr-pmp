@@ -19,4 +19,6 @@ public interface ProjectDao {
 	public Integer addProjectLeguer(ProjectLeaguer projectLeaguer);
 
 	public Integer delProjectLeguer(Integer id);
+
+	public ProjectLeaguer queryProjectLeguerByUser(Map<String, Object> params);
 }

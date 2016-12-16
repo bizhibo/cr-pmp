@@ -22,4 +22,11 @@ public class HomeController extends BaseController {
 		result.setViewName("/index");
 		return result;
 	}
+
+	@RequestMapping("/get-tools")
+	public Result getTools() {
+		Result result = homeService.getSoftWare(request);
+		result.setViewName("/tools");
+		return result;
+	}
 }

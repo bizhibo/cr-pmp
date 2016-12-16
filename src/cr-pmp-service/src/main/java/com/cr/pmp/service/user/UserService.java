@@ -36,4 +36,8 @@ public interface UserService {
 	public Result delUser(String userName);
 
 	public Result checkUserExist(Map<String, Object> params);
+
+	public Result checkPassword(Map<String, Object> params);
+	
+	public Result updUser(User user);
 }

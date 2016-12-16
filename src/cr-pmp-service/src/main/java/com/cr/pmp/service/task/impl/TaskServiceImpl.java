@@ -73,15 +73,19 @@ public class TaskServiceImpl implements TaskService {
 			int i = 2;
 			for (Task task : tasks) {
 				sheet.getRow(i).createCell(1).setCellValue(task.getName());
-				sheet.getRow(i).createCell(2).setCellValue(DateUtils.formatDateTime(task.getEndDate()));
-				sheet.getRow(i).createCell(4).setCellValue(task.getPerformerName());
-				sheet.getRow(i).createCell(5).setCellValue(task.getRemarks());
+				sheet.getRow(i).createCell(2).setCellValue(DateUtils.formatDateTime(task.getStartDate()));
+				sheet.getRow(i).createCell(3).setCellValue(DateUtils.formatDateTime(task.getEndDate()));
+				sheet.getRow(i).createCell(5).setCellValue(DateUtils.getIntervalDays(task.getStartDate(), task.getEndDate()));
+				sheet.getRow(i).createCell(6).setCellValue(task.getPerformerName());
+				sheet.getRow(i).createCell(7).setCellValue(task.getRemarks());
 				i++;
 				for(SubTask subTask : task.getSubTasks()){
 					sheet.getRow(i).createCell(1).setCellValue("	        "+subTask.getName());
-					sheet.getRow(i).createCell(2).setCellValue(DateUtils.formatDateTime(subTask.getEndDate()));
-					sheet.getRow(i).createCell(4).setCellValue(subTask.getPerformerName());
-					sheet.getRow(i).createCell(5).setCellValue(subTask.getRemarks());
+					sheet.getRow(i).createCell(2).setCellValue(DateUtils.formatDateTime(subTask.getStartDate()));
+					sheet.getRow(i).createCell(3).setCellValue(DateUtils.formatDateTime(subTask.getEndDate()));
+					sheet.getRow(i).createCell(5).setCellValue(DateUtils.getIntervalDays(subTask.getStartDate(), subTask.getEndDate()));
+					sheet.getRow(i).createCell(6).setCellValue(subTask.getPerformerName());
+					sheet.getRow(i).createCell(7).setCellValue(subTask.getRemarks());
 					i++;
 				}
 			}

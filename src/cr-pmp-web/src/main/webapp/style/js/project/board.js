@@ -52,6 +52,9 @@ $(function() {
 			addtperformer : {
 				required : true
 			},
+			addtstartDate : {
+				required : true
+			},
 			addtendDate : {
 				required : true
 			},
@@ -71,6 +74,7 @@ $(function() {
 			"tbid" : $("#addtbid").val(),
 			"name" : $("#addtname").val(),
 			"performer" : $("#addtperformer").val(),
+			"startDate" : $("#addtstartDate").val(),
 			"endDate" : $("#addtendDate").val(),
 			"priority" : $("input[name=addtpriority]:checked").val(),
 			"remarks" : $("#addtremarks").val()
@@ -148,7 +152,7 @@ function subTaskModal(tbid, tid, tname) {
 		title : "所属任务：" + tname,
 		shadeClose : true,
 		shade : false,
-		maxmin : true, // 开启最大化最小化按钮
+		maxmin : false, // 开启最大化最小化按钮
 		area : [ "1000px", "600px" ],
 		content : "/project/sub-task-index.do?tbid=" + tbid + "&tid=" + tid
 				+ "&pid=" + $("#pid").val()

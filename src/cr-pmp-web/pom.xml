@@ -18,11 +18,6 @@
 			<artifactId>cr-pmp-service</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>bsoft.sso.client</groupId>
-			<artifactId>bsoft-sso-client</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<finalName>cr-pmp-web</finalName>

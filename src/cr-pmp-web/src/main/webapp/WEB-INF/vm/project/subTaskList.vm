@@ -5,10 +5,11 @@
 			<div class="subtaskcss">
 				$!{subTask.name}<br/>
 				任务执行人：$!{subTask.performerName}<br/>
+				<i class="fa fa-clock-o">预计开始时间：$!dateUtils.formatDateTime($!{subTask.endDate})</i><br/>
 				<i class="fa fa-clock-o">预计完成时间：$!dateUtils.formatDateTime($!{subTask.endDate})</i><br/>
 				任务备注：$!{subTask.remarks}<br/>
-				<a href="#"  onclick="delSubTask($!{subTask.id})" class="btn btn-xs btn-danger">删除</a>
 			</div>
+			<a href="#"  onclick="delSubTask($!{subTask.id})" class="btn btn-xs btn-danger">删除</a>
         </div>
     </div>
 </div>

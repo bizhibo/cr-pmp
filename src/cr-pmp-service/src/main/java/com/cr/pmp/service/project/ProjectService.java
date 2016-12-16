@@ -10,11 +10,13 @@ public interface ProjectService {
 
 	public Result queryProjectPageList(Map<String, Object> params);
 
-	public Result addProject(Project project,String userName);
+	public Result addProject(Project project, String userName);
 
 	public Result queryProjectLeguer(Integer pid);
 
 	public Result addProjectLeguer(ProjectLeaguer projectLeaguer);
 
 	public Result delProjectLeguer(Integer id);
+
+	public Result checkLeaguerExist(Map<String, Object> params);
 }

@@ -20,4 +20,6 @@ public interface UserDao {
 	public Integer addUser(User user);
 
 	public Integer delUser(String userName);
+
+	public Integer updUser(User user);
 }

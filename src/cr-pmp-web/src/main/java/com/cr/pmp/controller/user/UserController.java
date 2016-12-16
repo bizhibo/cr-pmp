@@ -85,8 +85,9 @@ public class UserController extends BaseController {
 	}
 
 	@RequestMapping("/user-Info")
-	public Result getUserInfo(String userName) {
-		Result result = userService.queryUserInfo(userName);
+	public Result getUserInfo() {
+		Result result = userService.queryUserInfo(this.getParams("userName")
+				.toString());
 		result.setViewName("/user/userInfo");
 		return result;
 	}
@@ -104,5 +105,28 @@ public class UserController extends BaseController {
 	public String checkUserExist() {
 		Result result = userService.checkUserExist(this.getParams());
 		return result.toJson();
+	}
+
+	@RequestMapping("/check-password")
+	@ResponseBody
+	public String checkPassword() {
+		Result result = userService.checkPassword(this.getParams());
+		return result.toJson();
+	}
+
+	@RequestMapping("/upd-user")
+	@ResponseBody
+	public String updUser() {
+		Result result = userService.updUser((User) this
+				.getParamsObject(User.class));
+		return result.toJson();
+	}
+
+	@RequestMapping("/upd-user-page")
+	public Result updUserPage() {
+		Result result = userService.queryUserInfo(this.getParams("userName")
+				.toString());
+		result.setViewName("/user/updUser");
+		return result;
 	}
 }

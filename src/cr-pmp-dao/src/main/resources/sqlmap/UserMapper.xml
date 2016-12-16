@@ -28,7 +28,7 @@
 
 	<select id="login" parameterType="java.util.Map" resultType="user">
 		select
-		userName,name,birthday,sex,deptId,email,phone,position,portraitUrl
+		<include refid="fields" />
 		from
 		<include refid="tableName" />
 		where userName=#{userName} and password=#{password}
@@ -64,6 +64,7 @@
 		cpu.email AS email,
 		cpu.phone AS phone,
 		cpu.portraitUrl AS portraitUrl,
+		cpu.deptId AS deptId,
 		cpd.name AS deptName
 		FROM
 		<include refid="tableName" />

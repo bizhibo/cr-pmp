@@ -26,6 +26,8 @@ public class SubTask extends BaseModel {
 	private String performer;
 	/** 执行人姓名 **/
 	private String performerName;
+	/** 开始时间 **/
+	private Date startDate;
 	/** 结束时间 **/
 	private Date endDate;
 
@@ -91,6 +93,14 @@ public class SubTask extends BaseModel {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 }

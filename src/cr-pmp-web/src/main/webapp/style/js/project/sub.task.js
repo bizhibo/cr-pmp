@@ -9,6 +9,9 @@ $(function() {
 			addstperformer : {
 				required : true
 			},
+			addststartDate : {
+				required : true
+			},
 			addstendDate : {
 				required : true
 			},
@@ -28,6 +31,7 @@ $(function() {
 			"tid" : $("#tid").val(),
 			"name" : $("#addstname").val(),
 			"performer" : $("#addstperformer").val(),
+			"startDate" : $("#addststartDate").val(),
 			"endDate" : $("#addstendDate").val(),
 			"remarks" : $("#addstremarks").val()
 		};

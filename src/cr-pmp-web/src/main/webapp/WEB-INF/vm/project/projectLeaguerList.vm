@@ -6,8 +6,8 @@
 				姓名：$!{projectLeaguer.name}<br/>
 				部门：$!{projectLeaguer.deptName}<br/>
 				职位：$!{projectLeaguer.position}<br/>
-				<a href="#"  onclick=" delPL($!{projectLeaguer.id})" class="btn btn-xs btn-danger">删除</a>
 			</div>
+			<a href="#"  onclick=" delPL($!{projectLeaguer.id})" class="btn btn-xs btn-danger">删除</a>
         </div>
     </div>
 </div>

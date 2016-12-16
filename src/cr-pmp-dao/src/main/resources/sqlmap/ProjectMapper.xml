@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//xml.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cr.pmp.dao.project.ProjectDao">
 
+	<resultMap type="project" id="projectMap">
+		<result property="id" column="id" />
+		<result property="status" column="status" />
+		<result property="name" column="name" />
+		<result property="createTime" column="createTime" />
+		<result property="modifyTime" column="modifyTime" />
+		<association property="masterTaskCount" column="id"
+			select="queryMasterTaskCount" />
+		<association property="subTaskCount" column="id"
+			select="querySubTaskCount" />
+		<association property="leaguerCount" column="id"
+			select="queryLeaguerCount" />
+	</resultMap>
+
 	<sql id="fields">
 		id,
 		name,
@@ -34,8 +48,16 @@
 		cr_pmp_dept
 	</sql>
 
+	<sql id="taskTableName">
+		cr_pmp_task
+	</sql>
+
+	<sql id="subTaskTableName">
+		cr_pmp_sub_task
+	</sql>
+
 	<select id="queryProjectPageList" parameterType="java.util.Map"
-		resultType="project">
+		resultMap="projectMap">
 		SELECT
 		<include refid="fields" />
 		FROM
@@ -65,7 +87,8 @@
 			</if>
 		</where>
 	</select>
-	<insert id="addProject" parameterType="project" keyProperty="id" useGeneratedKeys="true">
+	<insert id="addProject" parameterType="project" keyProperty="id"
+		useGeneratedKeys="true">
 		INSERT
 		<include refid="tableName" />
 		(name,status,createTime,modifyTime)
@@ -82,20 +105,21 @@
 		cppl.id AS id,
 		cppl.pid AS pid,
 		cpu.userName AS userName,
-		cpu.name AS name,
+		cpu.name
+		AS name,
 		cpu.position AS
 		position,
 		cpd.name AS deptName
 		FROM
 		<include refid="leaguerTableName" />
-		as cppl
+		AS cppl
 		LEFT JOIN
 		<include refid="userTableName" />
-		as cpu
+		AS cpu
 		ON cppl.userName = cpu.userName
 		LEFT JOIN
 		<include refid="deptTableName" />
-		as cpd
+		AS cpd
 		ON cpu.deptId = cpd.id
 		WHERE cppl.pid=#{pid}
 		ORDER BY cppl.id DESC
@@ -117,4 +141,31 @@
 		<include refid="leaguerTableName" />
 		WHERE id=#{id}
 	</delete>
+	<select id="queryProjectLeguerByUser" parameterType="java.util.Map"
+		resultType="projectLeaguer">
+		SELECT
+		<include refid="leaguerFields" />
+		FROM
+		<include refid="leaguerTableName" />
+		WHERE pid=#{pid} AND userName=#{userName}
+	</select>
+
+	<select id="queryMasterTaskCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT COUNT(id) FROM
+		<include refid="taskTableName" />
+		WHERE pid=#{pid}
+	</select>
+	<select id="querySubTaskCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT COUNT(id) FROM
+		<include refid="subTaskTableName" />
+		WHERE pid=#{pid}
+	</select>
+	<select id="queryLeaguerCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT COUNT(id) FROM
+		<include refid="leaguerTableName" />
+		WHERE pid=#{pid}
+	</select>
 </mapper>

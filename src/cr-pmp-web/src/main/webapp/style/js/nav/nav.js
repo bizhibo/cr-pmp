@@ -11,7 +11,7 @@ $(function() {
 			},
 			addIcon : {
 				required : true,
-				maxlength : 10
+				maxlength : 20
 			},
 			addSequence : {
 				required : true,
