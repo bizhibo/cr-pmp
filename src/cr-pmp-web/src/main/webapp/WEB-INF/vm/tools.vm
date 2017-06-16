@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>常用软件</title>
+        <meta name="renderer" content="webkit">
+	    <meta http-equiv="Cache-Control" content="no-siteapp" />
+		<title>常用软件</title>
         <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="/style/css/animate.min.css" rel="stylesheet"/>
