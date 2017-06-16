@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 						.getAnnotation(NotLogin.class);
 			}
 			if (notLogin != null) {
-				return true;// 存在“不需要登陆”的注解，验证直接通过
+				return true;// 存在NotLogin的注解，验证直接通过
 			} else {
 				User user = (User) request.getSession().getAttribute(
 						SystemDict.USERSESSIONKEY);
