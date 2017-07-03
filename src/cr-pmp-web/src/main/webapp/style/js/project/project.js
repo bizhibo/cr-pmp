@@ -76,6 +76,7 @@ function openPL(pid, pname) {
 		shade : false,
 		maxmin : false, // 开启最大化最小化按钮
 		area : [ "1000px", "600px" ],
+		cancel :function(){$("#qbtn").trigger("click");},
 		content : "/project/project-leaguer-index.do?pid=" + pid
 	});
 }
