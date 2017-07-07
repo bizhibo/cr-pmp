@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @描述 : cookie工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-11下午2:30:54
  * 
  */
@@ -26,7 +26,7 @@ public class CookieUtils {
 
 	/**
 	 * @描述 : 获取cookie值的方法
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11下午2:41:21
 	 * 
 	 * @param name
@@ -56,7 +56,7 @@ public class CookieUtils {
 
 	/**
 	 * @描述 : 创建一个cookie
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11下午2:40:49
 	 * 
 	 * @param name
@@ -80,7 +80,7 @@ public class CookieUtils {
 
 	/**
 	 * @描述 : 将一个cookie内容置为空
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11下午2:41:05
 	 * 
 	 * @param name

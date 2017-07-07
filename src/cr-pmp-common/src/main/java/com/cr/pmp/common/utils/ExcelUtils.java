@@ -11,7 +11,7 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 /**
  * @描述 : 根据模版导出excel工具
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-6上午9:49:08
  * 
  */
@@ -20,7 +20,7 @@ public class ExcelUtils {
 
 	/**
 	 * @描述 : 初始化Excel
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:33:49
 	 * 
 	 * @param fileName
@@ -37,7 +37,7 @@ public class ExcelUtils {
 
 	/**
 	 * @描述 : 导出Excel文件
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:36:51
 	 * 
 	 * @param out

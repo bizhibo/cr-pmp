@@ -10,7 +10,7 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * @描述 : 转码器工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-13下午3:38:32
  * 
  */
@@ -18,7 +18,7 @@ public class TranscoderUtils {
 
 	/**
 	 * @描述 : 将对象转码为byte
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-16上午8:53:21
 	 * 
 	 * @param o
@@ -30,7 +30,7 @@ public class TranscoderUtils {
 
 	/**
 	 * @描述 : 将byte解码转换为对象
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-16上午9:03:18
 	 * 
 	 * @param b
@@ -42,7 +42,7 @@ public class TranscoderUtils {
 
 	/**
 	 * @描述 : 转码
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-16上午9:03:41
 	 * 
 	 * @param in
@@ -71,7 +71,7 @@ public class TranscoderUtils {
 
 	/**
 	 * @描述 : 解码
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-16上午9:03:51
 	 * 
 	 * @param in
@@ -108,7 +108,7 @@ public class TranscoderUtils {
 
 	/**
 	 * @描述 : 序列化
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-16上午9:04:01
 	 * 
 	 * @param o
@@ -136,7 +136,7 @@ public class TranscoderUtils {
 
 	/**
 	 * @描述 : 反序列化
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-16上午9:04:25
 	 * 
 	 * @param in

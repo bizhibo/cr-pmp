@@ -9,7 +9,7 @@ import com.cr.pmp.common.utils.ToolsUrl;
 
 /**
  * @描述 : 重写velocity视图的resolver 添加了spring直接注入工具类
- * @创建者：liushengsong@eztcn.com
+ * @创建者：cr-pmp
  * @创建时间： 2015年9月8日上午9:08:31
  *
  */
@@ -33,7 +33,7 @@ public class VelocityViewResolver extends AbstractTemplateViewResolver {
 
 	/**
 	 * @描述 : set 工具类
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午9:12:01
 	 *
 	 * @param toolAttributes
@@ -44,7 +44,7 @@ public class VelocityViewResolver extends AbstractTemplateViewResolver {
 
 	/**
 	 * @描述 : set URL工具类
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午10:44:29
 	 *
 	 * @param urlAttributes

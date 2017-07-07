@@ -20,7 +20,7 @@ import org.slf4j.spi.LocationAwareLogger;
 
 /**
  * @title 日志工具，对slf4j的封装
- * @author liushengsong
+ * @author cr-pmp
  * @date 2015-01-05
  *
  *       使用方法: Log.debug("message"); (自动根据调用者所在的类名动态生成 Logger 对象
@@ -39,25 +39,6 @@ public class LogUtils {
 	private static String FQCN = LogUtils.class.getName();
 	/** 是否启用日志平台收集日志，默认是false不启用 **/
 	private static boolean enable = false;
-//	/** 日志收集的唯一值 **/
-//	private static String platformKey = null;
-//
-//	static {
-//		Properties prop = new Properties();
-//		InputStream in = Object.class
-//				.getResourceAsStream("/log-platform.properties");
-//		try {
-//			prop.load(in);
-//			enable = new Boolean(prop.getProperty("log.platform.enable"));
-//			platformKey = prop.getProperty("log.platform.key");
-//		} catch (Exception e) {
-//			error(e.getMessage(), e);
-//		} finally {
-//			if (in != null) {
-//				CloseUtil.close(in);
-//			}
-//		}
-//	}
 
 	/**
 	 * 内部使用的 helper 方法, trace(), debug(), info(), warn(), error() 等方法调用此方法

@@ -22,7 +22,7 @@ public class AnalytExcel {
 
 	/**
 	 * @描述 : 读取Excel的Sheet
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:34:18
 	 * 
 	 * @param excl
@@ -57,7 +57,7 @@ public class AnalytExcel {
 
 	/**
 	 * @描述 : 读取Excel表格内的值
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:35:34
 	 * 
 	 * @param cell

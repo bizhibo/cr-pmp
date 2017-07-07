@@ -18,7 +18,7 @@ import com.cr.pmp.common.utils.LogUtils;
 
 /**
  * @描述 : 字符编码过滤器
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-11下午2:52:23
  * 
  */

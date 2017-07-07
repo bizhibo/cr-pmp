@@ -16,7 +16,7 @@ import com.thoughtworks.xstream.converters.basic.DateConverter;
 
 /**
  * @描述 : xml工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-10上午9:16:24
  */
 public class XmlUtils {
@@ -25,7 +25,7 @@ public class XmlUtils {
 
 	/**
 	 * @描述 : 获取对象的xml格式字符串
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-10上午9:16:47
 	 * 
 	 * @param entity
@@ -39,7 +39,7 @@ public class XmlUtils {
 
 	/**
 	 * @描述 : 输出一个xml内容格式的文件
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-10上午9:25:12
 	 * 
 	 * @param entity
@@ -65,7 +65,7 @@ public class XmlUtils {
 
 	/**
 	 * @描述 : 获取xml字符串的对象
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-10上午9:16:17
 	 * 
 	 * @param str
@@ -78,7 +78,7 @@ public class XmlUtils {
 
 	/**
 	 * @描述 : 获取xml格式的文件的对象
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-10上午11:22:42
 	 * 
 	 * @param file

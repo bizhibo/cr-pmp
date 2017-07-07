@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @描述 : URL工具类用于页面的域名切换分页等
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-3下午4:59:26
  * 
  */
@@ -32,7 +32,7 @@ public class ToolsUrl implements Cloneable {
 
 	/***
 	 * @描述 : 获取url地址
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-3下午5:02:54
 	 * 
 	 * @return
@@ -58,7 +58,7 @@ public class ToolsUrl implements Cloneable {
 
 	/**
 	 * @描述 : 初始化url类
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-3下午5:00:47
 	 * 
 	 * @return
@@ -117,7 +117,7 @@ public class ToolsUrl implements Cloneable {
 
 	/**
 	 * @描述 : 获取路径
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-3下午5:03:10
 	 *
 	 * @param contextPath
@@ -148,7 +148,7 @@ public class ToolsUrl implements Cloneable {
 
 	/**
 	 * @描述 : 拼装url参数
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-3下午5:03:23
 	 *
 	 * @param builder

@@ -24,7 +24,7 @@ import com.cr.pmp.common.result.Result;
 
 /**
  * @描述 : vm的html工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-19下午1:58:05
  * 
  */
@@ -41,7 +41,7 @@ public class VelocityHtmlUtils {
 
 	/**
 	 * @描述 : 获取vm模版的html格式字符串
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11上午9:40:44
 	 * 
 	 * @param result
@@ -57,7 +57,7 @@ public class VelocityHtmlUtils {
 
 	/**
 	 * @描述 : 输出vm模版的html格式文件
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11上午9:40:29
 	 * 
 	 * @param result
@@ -93,7 +93,7 @@ public class VelocityHtmlUtils {
 
 	/**
 	 * @描述 : 初始化Context
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11上午9:39:19
 	 * 
 	 * @param result
@@ -122,7 +122,7 @@ public class VelocityHtmlUtils {
 
 	/**
 	 * @描述 : 装填Context
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-23下午2:03:44
 	 * 
 	 * @param context
@@ -134,7 +134,7 @@ public class VelocityHtmlUtils {
 
 	/**
 	 * @描述 : 加载工具类
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11上午9:44:27
 	 * 
 	 * @param context
@@ -151,7 +151,7 @@ public class VelocityHtmlUtils {
 
 	/**
 	 * @描述 : 加载url工具类
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-11上午9:45:37
 	 * 
 	 * @param context

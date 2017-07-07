@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * @描述 : 此注解作用于不需要验证登陆的controller
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2015年9月8日下午3:50:50
  *
  */ 

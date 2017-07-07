@@ -6,7 +6,7 @@ import com.cr.pmp.common.utils.JsonUtils;
 
 /**
  * @描述 : 返回的结果集
- * @创建者：liushengsong@eztcn.com
+ * @创建者：cr-pmp
  * @创建时间： 2015年9月2日上午9:40:01
  *
  */
@@ -22,7 +22,7 @@ public class Result extends ModelAndView {
 
 	/**
 	 * @描述 :获取结果集json字符串
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月2日上午9:40:18
 	 *
 	 * @return
@@ -33,7 +33,7 @@ public class Result extends ModelAndView {
 
 	/**
 	 * @描述 : 插入返回信息
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月2日上午9:55:09
 	 *
 	 * @param message
@@ -44,7 +44,7 @@ public class Result extends ModelAndView {
 
 	/**
 	 * @描述 : 插入返回编码
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月2日上午9:55:24
 	 *
 	 * @param resultCode
@@ -55,7 +55,7 @@ public class Result extends ModelAndView {
 
 	/**
 	 * @描述 : 插入返回编码
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月2日上午9:55:24
 	 *
 	 * @param resultCode
@@ -66,7 +66,7 @@ public class Result extends ModelAndView {
 
 	/**
 	 * @描述 : 插入返回编码
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月2日上午9:55:24
 	 *
 	 * @param resultCode
@@ -77,7 +77,7 @@ public class Result extends ModelAndView {
 
 	/**
 	 * @描述 : 插入返回异常
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月2日上午9:55:53
 	 *
 	 * @param e

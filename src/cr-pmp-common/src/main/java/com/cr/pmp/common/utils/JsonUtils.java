@@ -18,7 +18,7 @@ import org.codehaus.jackson.type.TypeReference;
 
 /**
  * @描述 : json工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-5上午10:26:48
  * 
  */
@@ -28,7 +28,7 @@ public class JsonUtils {
 
 	/**
 	 * @描述 : 获取对象的json格式字符串默认不格式化
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-5上午10:19:19
 	 * 
 	 * @param entity
@@ -40,7 +40,7 @@ public class JsonUtils {
 
 	/**
 	 * @描述 : 获取对象的json格式字符串可设置是否格式化
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-5上午10:19:38
 	 * 
 	 * @param entity
@@ -73,7 +73,7 @@ public class JsonUtils {
 
 	/**
 	 * @描述 : 获取json字符串的对象
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-5上午10:21:32
 	 * 
 	 * @param str
@@ -99,7 +99,7 @@ public class JsonUtils {
 
 	/**
 	 * @描述 : 获取json字符串的对象泛型
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-5上午10:22:41
 	 * 
 	 * @param str
@@ -125,7 +125,7 @@ public class JsonUtils {
 
 	/**
 	 * @描述 : 获取json字符串的对象非泛型
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-5上午10:22:48
 	 * 
 	 * @param str

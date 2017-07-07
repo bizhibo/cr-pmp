@@ -4,7 +4,7 @@ package com.cr.pmp.common.utils;
 
 /**
  * @描述 : 本地缓存工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-5-8下午4:33:17
  * 
  */
@@ -12,7 +12,7 @@ public class CacheUtils {
 
 	/**
 	 * @描述 : 缓存数据
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-20下午1:32:16
 	 * 
 	 * @param key
@@ -31,7 +31,7 @@ public class CacheUtils {
 
 	/**
 	 * @描述 : 获取缓存数据
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-20下午1:32:47
 	 * 
 	 * @param key

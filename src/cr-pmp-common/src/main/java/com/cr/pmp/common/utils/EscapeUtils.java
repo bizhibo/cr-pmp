@@ -4,7 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @描述 : js中escape()方法对应的Java中的解析类
- * @创建者：liushengsong @创建时间： 2014-5-5下午5:17:26
+ * @创建者：cr-pmp
+ * @创建时间： 2014-5-5下午5:17:26
  * 
  */
 public class EscapeUtils {
@@ -59,7 +60,8 @@ public class EscapeUtils {
 
 	/**
 	 * @描述 : 加密方法对应js中的escape()方法
-	 * @创建者：liushengsong @创建时间： 2014-5-5下午5:17:37
+	 * @创建者：cr-pmp 
+	 * @创建时间： 2014-5-5下午5:17:37
 	 * 
 	 * @param s
 	 * @return
@@ -100,7 +102,8 @@ public class EscapeUtils {
 
 	/**
 	 * @描述 : 解密方法对应js中的unescape()方法
-	 * @创建者：liushengsong @创建时间： 2014-5-5下午5:17:49
+	 * @创建者：cr-pmp 
+	 * @创建时间： 2014-5-5下午5:17:49
 	 * 
 	 * @param s
 	 * @return

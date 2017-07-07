@@ -15,7 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @描述 : 加密解密工具类
- * @创建者：liushengsong @创建时间： 2014-6-6上午8:57:23
+ * @创建者：cr-pmp 
+ * @创建时间： 2014-6-6上午8:57:23
  * 
  */
 public class SecurityUtils {
@@ -25,7 +26,8 @@ public class SecurityUtils {
 
 	/**
 	 * @描述 : 获得数据的MD5加密串
-	 * @创建者：liushengsong @创建时间： 2014-5-5下午5:26:16
+	 * @创建者：cr-pmp 
+	 * @创建时间： 2014-5-5下午5:26:16
 	 * 
 	 * @param str
 	 * @return
@@ -47,7 +49,8 @@ public class SecurityUtils {
 
 	/**
 	 * @描述 : byte转换为字符串
-	 * @创建者：liushengsong@eztcn.com @创建时间： 2016年3月28日上午3:14:00
+	 * @创建者：cr-pmp
+	 * @创建时间： 2016年3月28日上午3:14:00
 	 *
 	 * @param bytes
 	 * @return
@@ -65,7 +68,8 @@ public class SecurityUtils {
 
 	/**
 	 * @描述 : AES加密
-	 * @创建者：liushengsong@eztcn.com @创建时间： 2016年3月28日上午3:06:46
+	 * @创建者：cr-pmp
+	 * @创建时间： 2016年3月28日上午3:06:46
 	 *
 	 * @param content
 	 *            内容
@@ -98,7 +102,8 @@ public class SecurityUtils {
 
 	/**
 	 * @描述 : AES解密
-	 * @创建者：liushengsong@eztcn.com @创建时间： 2016年3月28日上午3:07:06
+	 * @创建者：cr-pmp
+	 * @创建时间： 2016年3月28日上午3:07:06
 	 *
 	 * @param content
 	 *            内容
@@ -131,7 +136,8 @@ public class SecurityUtils {
 
 	/**
 	 * @描述 : DES加密
-	 * @创建者：liushengsong@eztcn.com @创建时间： 2016年3月28日上午3:08:23
+	 * @创建者：cr-pmp
+	 * @创建时间： 2016年3月28日上午3:08:23
 	 *
 	 * @param content
 	 *            内容
@@ -163,7 +169,8 @@ public class SecurityUtils {
 
 	/**
 	 * @描述 : DES解密
-	 * @创建者：liushengsong@eztcn.com @创建时间： 2016年3月28日上午3:07:29
+	 * @创建者：cr-pmp
+	 * @创建时间： 2016年3月28日上午3:07:29
 	 *
 	 * @param content
 	 *            内容

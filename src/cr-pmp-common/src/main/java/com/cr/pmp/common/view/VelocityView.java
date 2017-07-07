@@ -39,7 +39,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 设置vm模版中用到的url工具类
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午10:33:19
 	 *
 	 * @param urlAttributes
@@ -50,7 +50,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 设置vm模版上需要使用的工具类
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午10:05:35
 	 *
 	 * @param toolAttributes
@@ -61,7 +61,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 设置vm模版字符编码默认是iso-8859-1
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午9:57:43
 	 *
 	 * @param encoding
@@ -72,7 +72,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 获取编码方式
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午9:58:16
 	 *
 	 * @return
@@ -83,7 +83,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 设置模版是否缓存
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午9:58:39
 	 *
 	 * @param cacheTemplate
@@ -94,7 +94,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 获取模版是否已经缓存
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午9:59:03
 	 *
 	 * @return
@@ -126,7 +126,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 自动创建一个engine
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午10:00:55
 	 *
 	 * @return
@@ -212,7 +212,7 @@ public class VelocityView extends AbstractTemplateView {
 
 	/**
 	 * @描述 : 创建一个VelocityContext
-	 * @创建者：liushengsong@eztcn.com
+	 * @创建者：cr-pmp
 	 * @创建时间： 2015年9月8日上午10:02:32
 	 *
 	 * @param model

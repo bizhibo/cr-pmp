@@ -24,7 +24,7 @@ import com.cr.pmp.common.utils.LogUtils;
 
 /**
  * @描述 控制层
- * @创建者 CR-PMP
+ * @创建者 cr-pmp
  * @创建时间 1/5/2015
  */
 public class BaseController {
@@ -83,7 +83,7 @@ public class BaseController {
 
 	/**
 	 * @描述 : 获取request请求的IP地址
-	 * @创建者：CR-PMP
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-4上午11:47:46
 	 * @return
 	 */

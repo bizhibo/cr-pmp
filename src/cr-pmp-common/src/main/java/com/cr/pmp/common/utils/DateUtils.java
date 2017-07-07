@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * @描述 : 时间格式化工具类
- * @创建者：liushengsong
+ * @创建者：cr-pmp
  * @创建时间： 2014-6-4下午2:47:05
  */
 public class DateUtils {
@@ -19,7 +19,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 将date转换为string,格式yyyy-MM-dd
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:15:51
 	 * 
 	 * @param date
@@ -35,7 +35,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 将date转换为string,格式yyyy-MM-dd HH:mm:ss
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:16:06
 	 * 
 	 * @param date
@@ -51,7 +51,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 将date转换为string,格式pattern自定义的格式
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-4下午2:55:17
 	 * 
 	 * @param date
@@ -69,7 +69,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 将string转换为date,格式yyyy-MM-dd hh:mm:ss
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:16:17
 	 * 
 	 * @param date
@@ -91,7 +91,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 将string转换为date,格式yyyy-MM-dd
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-5-5下午5:16:27
 	 * 
 	 * @param date
@@ -113,7 +113,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 将string转换为date,格式pattern自定义格式
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2014-6-4下午3:27:47
 	 * 
 	 * @param date
@@ -137,7 +137,7 @@ public class DateUtils {
 
 	/**
 	 * @描述 : 计算相隔天数 保留一位小数
-	 * @创建者：liushengsong
+	 * @创建者：cr-pmp
 	 * @创建时间： 2016年11月18日上午11:28:22
 	 *
 	 * @param startDate
