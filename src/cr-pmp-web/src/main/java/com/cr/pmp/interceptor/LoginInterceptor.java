@@ -1,4 +1,4 @@
-package com.cr.pmp.interceptor.login;
+package com.cr.pmp.interceptor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,7 +10,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.cr.pmp.annotation.NotLogin;
+import com.cr.pmp.common.annotation.NotLogin;
 import com.cr.pmp.common.dict.SystemDict;
 import com.cr.pmp.common.utils.LogUtils;
 import com.cr.pmp.model.user.User;
