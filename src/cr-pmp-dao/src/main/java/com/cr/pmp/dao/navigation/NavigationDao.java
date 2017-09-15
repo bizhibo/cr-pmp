@@ -13,11 +13,8 @@ public interface NavigationDao {
 
 	public Integer queryCount(Map<String, Object> params);
 
-	public List<Navigation> queryListByLevel(Integer level);
-
-	public List<Navigation> queryRootNav();
-
 	public Integer delNav(Integer id);
+	
+	public List<Navigation> queryAllNav();
 
-	public Integer queryCountByPid(Integer pid);
 }

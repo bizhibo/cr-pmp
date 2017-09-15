@@ -229,6 +229,13 @@
 		</if>
 		WHERE id=#{id}
 	</update>
+	<update id="updSubTaskTbid" parameterType="subTask">
+		UPDATE
+		<include refid="subTaskTableName" />
+		SET modifyTime=now(),
+		tbid=#{tbid}
+		WHERE tid=#{tid}
+	</update>
 	<insert id="addSubTask" parameterType="subTask">
 		INSERT
 		<include refid="subTaskTableName" />

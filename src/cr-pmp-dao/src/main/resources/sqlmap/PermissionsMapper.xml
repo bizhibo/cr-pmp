@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//xml.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.pmp.dao.permissions.PermissionsDao">
+
+	<sql id="fields">
+		id,
+		name,
+		code,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="userPermissionsFields">
+		id,
+		userName,
+		jid,
+		createTime,
+		modifyTime
+	</sql>
+
+	<sql id="tableName">
+		cr_pmp_permissions
+	</sql>
+
+	<sql id="userPermissionsTableName">
+		cr_pmp_user_permissions
+	</sql>
+
+	<insert id="addPermissions" parameterType="permissions">
+		INSERT
+		<include refid="tableName" />
+		(name,code,createTime,modifyTime)
+		VALUES
+		(#{name},#{code},now(),now())
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+	<update id="updPermissions" parameterType="permissions">
+		UPDATE
+		<include refid="tableName" />
+		SET name=#{name},
+		code=#{code},
+		modifyTime=now()
+		WHERE id=#{id}
+	</update>
+	<delete id="delPermissions" parameterType="java.lang.Integer">
+		DELETE
+		FROM
+		<include refid="tableName" />
+		WHERE id=#{id}
+	</delete>
+	<select id="queryPermissionsPageList" parameterType="java.util.Map"
+		resultType="permissions">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		ORDER BY id DESC LIMIT #{startRow},#{pageSize}
+	</select>
+	<select id="queryCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		COUNT(id)
+		FROM
+		<include refid="tableName" />
+	</select>
+	<select id="queryPermissionsList" resultType="permissions">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		ORDER BY id DESC
+	</select>
+	<select id="queryById" parameterType="java.lang.Integer"
+		resultType="permissions">
+		SELECT
+		<include refid="fields" />
+		FROM
+		<include refid="tableName" />
+		WHERE id=#{id}
+	</select>
+	<select id="queryExistByCode" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		SELECT
+		COUNT(id)
+		FROM
+		<include refid="tableName" />
+		WHERE code=#{code}
+	</select>
+	<insert id="addUserPermissions" parameterType="java.util.List">
+		INSERT
+		<include refid="userPermissionsTableName" />
+		(userName,jid,createTime,modifyTime)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.userName},#{item.jid},now(),now())  
+    	</foreach> 
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+	</insert>
+	<delete id="delUserPermissions" parameterType="java.util.Map">
+		DELETE
+		FROM
+		<include refid="userPermissionsTableName" />
+		<where>
+			<if test="jid!=null and jid!=0">
+				AND jid=#{jid}
+			</if>
+			<if test="userName!=null and userName!=''">
+				AND userName=#{userName}
+			</if>
+		</where>
+	</delete>
+	<select id="queryPermissionsByUserName" parameterType="java.lang.String"
+		resultType="userPermissions">
+		SELECT
+		uj.id AS id,
+		uj.userName AS userName,
+		uj.jid AS jid,
+		j.code AS code,
+		uj.createTime AS createTime,
+		uj.modifyTime AS modifyTime
+		FROM
+		<include refid="userPermissionsTableName" /> uj
+		LEFT JOIN 
+		<include refid="tableName" /> j
+		ON uj.jid=j.id
+		WHERE uj.userName=#{userName}
+	</select>
+</mapper>

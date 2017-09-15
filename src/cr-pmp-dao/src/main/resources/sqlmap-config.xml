@@ -19,6 +19,8 @@
 		<typeAlias alias="task" type="com.cr.pmp.model.task.Task" />
 		<typeAlias alias="subTask" type="com.cr.pmp.model.task.SubTask" />
 		<typeAlias alias="projectLeaguer" type="com.cr.pmp.model.project.ProjectLeaguer" />
+		<typeAlias alias="permissions" type="com.cr.pmp.model.permissions.Permissions" />
+		<typeAlias alias="userPermissions" type="com.cr.pmp.model.permissions.UserPermissions" />
 	</typeAliases>
 	<!-- sqlmap 映射器 -->
 	<mappers>
@@ -27,5 +29,6 @@
 		<mapper resource="sqlmap/DeptMapper.xml" />
 		<mapper resource="sqlmap/ProjectMapper.xml" />
 		<mapper resource="sqlmap/TaskMapper.xml" />
+		<mapper resource="sqlmap/PermissionsMapper.xml" />
 	</mappers>
 </configuration>

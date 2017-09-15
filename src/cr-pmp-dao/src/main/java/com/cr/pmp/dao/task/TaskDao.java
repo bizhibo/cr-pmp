@@ -18,6 +18,8 @@ public interface TaskDao {
 
 	public Integer addSubTask(SubTask subTask);
 
+	public Integer updSubTaskTbid(SubTask subTask);
+	
 	public Integer delTaskBoard(Integer id);
 
 	public Integer delTask(Integer id);
