@@ -16,62 +16,17 @@ $(function() {
 			addSequence : {
 				required : true,
 				maxlength : 10
+			},
+			addUrl : {
+				required : true,
+				maxlength : 150
 			}
-		}
-	});
-	$("input[name=addLevel]").on(
-			"ifChecked",
-			function(event) {
-				var level = $("input[name=addLevel]:checked").val();
-				if (level > 1) {
-					var op = "<option value=''>请选择</option>"
-					$.ajax({
-						url : "/nav/get-nav-list.do",
-						type : "post",
-						data : {
-							"level" : level - 1
-						},
-						dataType : "json",
-						success : function(result) {
-							var array = result.navList;
-							for (var i = 0; i < array.length; i++) {
-								op = op + "<option value='" + array[i].id
-										+ "'>" + array[i].name + "</option>";
-							}
-							$("#addpid").html(op);
-						},
-						error : function() {
-							swal("提示", "系统异常,请联系管理员!", "warning");
-							return;
-						}
-					});
-					$("#addpid").attr("disabled", false);
-					$("#addpid").rules("add", {
-						required : true,
-					});
-				} else {
-					$("#addpid").attr("disabled", true);
-					$("#addpid").rules("remove");
-				}
-			});
-	$("input[name=addType]").on("ifChecked", function(event) {
-		var type = $("input[name=addType]:checked").val();
-		if (type == "DYNAMIC") {
-			$("#addUrl").attr("disabled", false);
-			$("#addUrl").rules("add", {
-				required : true
-			});
-		}
-		if (type == "STATIC") {
-			$("#addUrl").attr("disabled", true);
-			$("#addUrl").rules("remove");
 		}
 	});
 	$("#qbtn").bind(
 			"click",
 			function() {
-				var url = "/nav/page-list.do?name=" + $("#qname").val()
-						+ "&level=" + $("input[name=qlevel]:checked").val();
+				var url = "/nav/page-list.do?name=" + $("#qname").val();
 				selectPage(url);
 			});
 	$("#addbtn").bind("click", function() {
@@ -81,24 +36,12 @@ $(function() {
 		var name = $("#addName").val();
 		var icon = $("#addIcon").val();
 		var sequence = $("#addSequence").val();
-		var level = $("input[name=addLevel]:checked").val();
-		var type = $("input[name=addType]:checked").val();
-		var url = "";
-		var pid = "";
-		if (level == 2 || level == 3) {
-			pid = $("#addpid").val();
-		}
-		if (type == "DYNAMIC") {
-			url = $("#addUrl").val();
-		}
+		var url = $("#addUrl").val();
 		var data = {
 			"name" : name,
 			"icon" : icon,
 			"sequence" : sequence,
-			"level" : level,
-			"type" : type,
-			"url" : url,
-			"parentId" : pid
+			"url" : url
 		};
 		$.ajax({
 			url : "/nav/add-nav.do",

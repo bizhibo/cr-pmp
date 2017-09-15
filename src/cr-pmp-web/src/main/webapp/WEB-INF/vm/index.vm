@@ -2,15 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="renderer" content="webkit"/>
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <title>CR-PMP</title>
-    <link href="/style/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/style/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/style/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/style/css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="/style/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-    <link href="/style/css/animate.min.css" rel="stylesheet">
-    <link href="/style/css/style.min.css" rel="stylesheet">
+    <link href="/style/css/animate.min.css" rel="stylesheet"/>
+    <link href="/style/css/style.min.css" rel="stylesheet"/>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg mini-navbar" style="overflow:hidden">
     <div id="wrapper">
@@ -43,7 +43,7 @@
 					#foreach($nav1 in $treeNav)
                     <li>
 						#if($!{nav1.type}=="DYNAMIC")
-						<a href="$!{nav1.url}" #if($nav1.navList.size()==0) class="J_menuItem" #end>
+						<a id="treePage$!{velocityCount}" href="$!{nav1.url}" #if($nav1.navList.size()==0) class="J_menuItem" #end>
 						#else
                         <a href="#" #if($nav1.navList.size()==0) class="J_menuItem" #end>
 						#end
@@ -182,7 +182,6 @@
                 </button>
                 <nav class="page-tabs J_menuTabs">
                     <div class="page-tabs-content">
-                        <a href="javascript:;" class="active J_menuTab" data-id="/nav/index.do">首页</a>
                     </div>
                 </nav>
                 <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -204,7 +203,7 @@
                 <a href="/logout.do" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/nav/index.do" frameborder="0" data-id="/nav/index.do" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="" frameborder="0" seamless></iframe>
             </div>
             <div class="footer">
                 <div class="pull-right">&copy; 2014-2015 CR-PMP</a>

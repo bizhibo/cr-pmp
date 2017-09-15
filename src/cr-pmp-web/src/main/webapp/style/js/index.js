@@ -81,4 +81,6 @@ $(function() {
 	$("#updPW").bind("click", function() {
 		$("#updPWModal").modal("show");
 	});
+	
+	$("#treePage1").trigger("click");
 });

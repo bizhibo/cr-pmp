@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.cr.pmp.common.dict.FilePathDict;
 import com.cr.pmp.common.result.Result;
 import com.cr.pmp.dao.navigation.NavigationDao;
-import com.cr.pmp.model.navigation.Navigation;
 import com.cr.pmp.model.soft.SoftWare;
 import com.cr.pmp.service.home.HomeService;
 
@@ -26,8 +25,6 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public Result index() {
 		Result result = new Result();
-		List<Navigation> navList = navigationDao.queryRootNav();
-		result.addObject("treeNav", navList);
 		return result;
 	}
 

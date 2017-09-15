@@ -1,5 +1,6 @@
 package com.cr.pmp.service.navigation.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cr.pmp.common.result.Result;
+import com.cr.pmp.common.utils.JsonUtils;
 import com.cr.pmp.common.utils.LogUtils;
 import com.cr.pmp.common.utils.PaginatedArrayList;
 import com.cr.pmp.common.utils.PaginatedList;
@@ -51,18 +53,6 @@ public class NavigationServiceImpl implements NavigationService {
 	}
 
 	@Override
-	public Result queryListByLevel(Integer level) {
-		Result result = new Result();
-		try {
-			List<Navigation> list = navigationDao.queryListByLevel(level);
-			result.addObject("navList", list);
-		} catch (Exception e) {
-			LogUtils.error(e.getMessage(), e);
-		}
-		return result;
-	}
-
-	@Override
 	public Result addNav(Navigation navigation) {
 		Result result = new Result();
 		try {
@@ -83,16 +73,11 @@ public class NavigationServiceImpl implements NavigationService {
 	public Result delNav(Integer id) {
 		Result result = new Result();
 		try {
-			int count = navigationDao.queryCountByPid(id);
-			if (count > 0) {
-				result.setResultCode("EXISTNODE");
+			Integer flag = navigationDao.delNav(id);
+			if (flag > 0) {
+				result.setResultCode(true);
 			} else {
-				Integer flag = navigationDao.delNav(id);
-				if (flag > 0) {
-					result.setResultCode(true);
-				} else {
-					result.setResultCode(false);
-				}
+				result.setResultCode(false);
 			}
 		} catch (Exception e) {
 			result.setResultCode(false);
@@ -101,4 +86,26 @@ public class NavigationServiceImpl implements NavigationService {
 		return result;
 	}
 
+	@Override
+	public Result queryAllNav() {
+		Result result = new Result();
+		try {
+			List<List<Navigation>> lists = new ArrayList<List<Navigation>>();
+			List<Navigation> list = navigationDao.queryAllNav();
+			int j = list.size() / 3 + (list.size() % 3 > 0 ? 1 : 0);
+			int k = 0;
+			for (int i = 1; i <= j; i++) {
+				if (i == j) {
+					lists.add(list.subList(k, list.size()));
+				} else {
+					lists.add(list.subList(k, k + 3));
+					k = k + 3;
+				}
+			}
+			result.addObject("lists", lists);
+		} catch (Exception e) {
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
 }

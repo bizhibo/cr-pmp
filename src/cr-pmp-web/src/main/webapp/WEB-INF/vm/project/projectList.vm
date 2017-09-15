@@ -19,7 +19,7 @@
 				任务总数：$!{project.taskCount}
             </td>
             <td class="project-actions">
-                <a href="/project/project-board.do?pid=$!{project.id}" class="btn btn-white btn-sm">
+                <a href="#" onclick="openBoard($!{project.id})" class="btn btn-white btn-sm">
                     <i class="fa fa-folder"></i> 进入看板
                 </a>
 				<a href="#" class="btn btn-white btn-sm" onclick="openPL($!{project.id}, '$!{project.name}')">
@@ -31,7 +31,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-    						<a href="/project/export-project-task.do?pid=$!{project.id}&pname=$!{project.name}">
+    						<a href="#" onclick="dcExcel($!{project.id},'$!{project.name}')" >
     							导出计划书
     						</a>
                         </li>

@@ -1,6 +1,7 @@
 package com.cr.pmp.controller.user;
 
 import java.io.File;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,10 @@ import com.cr.pmp.common.base.BaseController;
 import com.cr.pmp.common.dict.FilePathDict;
 import com.cr.pmp.common.result.Result;
 import com.cr.pmp.common.utils.DateUtils;
+import com.cr.pmp.common.utils.JsonUtils;
 import com.cr.pmp.common.utils.SecurityUtils;
 import com.cr.pmp.common.utils.UUIDUtils;
+import com.cr.pmp.model.permissions.UserPermissions;
 import com.cr.pmp.model.user.User;
 import com.cr.pmp.service.user.UserService;
 
@@ -25,10 +28,6 @@ public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/index")
-	public Result index() {
-		return new Result("/user/index");
-	}
 
 	@RequestMapping("/page-list")
 	public Result queryUserList() {
@@ -85,11 +84,11 @@ public class UserController extends BaseController {
 	}
 
 	@RequestMapping("/user-Info")
-	public Result getUserInfo() {
+	@ResponseBody
+	public String getUserInfo() {
 		Result result = userService.queryUserInfo(this.getParams("userName")
 				.toString());
-		result.setViewName("/user/userInfo");
-		return result;
+		return result.toJson();
 	}
 
 	@RequestMapping("/del-user")
@@ -122,11 +121,24 @@ public class UserController extends BaseController {
 		return result.toJson();
 	}
 
-	@RequestMapping("/upd-user-page")
-	public Result updUserPage() {
-		Result result = userService.queryUserInfo(this.getParams("userName")
-				.toString());
-		result.setViewName("/user/updUser");
-		return result;
+
+	@RequestMapping("/get-user-permissions")
+	@ResponseBody
+	public String getUserPermissions() {
+		Result result = userService.queryUserPermissions(this.getParams(
+				"userName").toString());
+		return result.toJson();
+	}
+
+	@RequestMapping("/add-user-permissions")
+	@ResponseBody
+	public String addUserPermissions() {
+		System.out.println(this.getParams("ujList"));
+		List<UserPermissions> ujList = JsonUtils.fromJson(
+				this.getParams("ujList").toString(), List.class,
+				UserPermissions.class);
+		Result result = userService.addUserPermissions(ujList,
+				this.getParams("userName").toString());
+		return result.toJson();
 	}
 }

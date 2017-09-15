@@ -1,0 +1,27 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>权限名称</th>
+            <th>权限编码</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+		#foreach($jur in $pageList)
+        <tr>
+            <td>$!{jur.name}</td>
+            <td>$!{jur.code}</td>
+            <td>$!dateUtils.formatDateTime($!{jur.createTime})</td>
+            <td>
+				<button onclick="queryById($!{jur.id},'$!{jur.code}');" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#updModal"><i class="fa fa-paste"></i> 编辑</button>
+				<button onclick="del($!{jur.id});" type="button" class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> 删除</button>
+			</td>
+        </tr>
+		#end
+    </tbody>
+</table>
+<div>
+	#set($pageModule = $mainModule.getTarget("/permissions/page-list.do"))
+	#showAjaxPage($pageModule $pageList)
+</div>

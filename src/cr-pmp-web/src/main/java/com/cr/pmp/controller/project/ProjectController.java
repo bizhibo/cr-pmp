@@ -54,20 +54,11 @@ public class ProjectController extends BaseController {
 		return result.toJson();
 	}
 
-	@RequestMapping("/project-board")
-	public Result projectBoard() {
-		Result result = projectService.queryProjectLeguer(Integer.valueOf(this
-				.getParams("pid").toString()));
-		result.setViewName("/project/board");
-		return result;
-	}
-
 	@RequestMapping("/board-list")
 	@ResponseBody
-	public Result queryBoardList() {
+	public String queryBoardList() {
 		Result result = taskService.queryTaskBoardByPid(this.getParams());
-		result.setViewName("/project/boardList");
-		return result;
+		return result.toJson();
 	}
 
 	@RequestMapping("/add-board")
@@ -126,39 +117,20 @@ public class ProjectController extends BaseController {
 		return result.toJson();
 	}
 
-	@RequestMapping("/sub-task-index")
-	public Result subTaskIndex() {
-		Result result = projectService.queryProjectLeguer(Integer.valueOf(this
-				.getParams("pid").toString()));
-		result.addAllObjects(this.getParams());
-		result.setViewName("/project/subTask");
-		return result;
-	}
 
 	@RequestMapping("/sub-task-list")
 	@ResponseBody
-	public Result subTaskList() {
-		Result result = taskService.querySubTaskByTid(Integer.valueOf(this
-				.getParams("tid").toString()));
-		result.setViewName("/project/subTaskList");
-		return result;
-	}
-
-	@RequestMapping("/project-leaguer-index")
-	public Result projectLeaguerIndex() {
-		Result result = userService.queryAllUser();
-		result.addAllObjects(this.getParams());
-		result.setViewName("/project/projectLeaguer");
-		return result;
+	public String subTaskList() {
+		Result result = taskService.querySubTaskByTid(this.getParams());
+		return result.toJson();
 	}
 
 	@RequestMapping("/project-leaguer-list")
 	@ResponseBody
-	public Result projectLeaguerList() {
+	public String projectLeaguerList() {
 		Result result = projectService.queryProjectLeguer(Integer.valueOf(this
 				.getParams("pid").toString()));
-		result.setViewName("/project/projectLeaguerList");
-		return result;
+		return result.toJson();
 	}
 
 	@RequestMapping("/add-project-leaguer")

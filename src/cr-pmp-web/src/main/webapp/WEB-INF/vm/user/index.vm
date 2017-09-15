@@ -64,6 +64,26 @@
                 </div>
             </div>
         </div>
+		<div class="modal inmodal" id="juModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h5>权限配置</h5>
+                    </div>
+                    <div class="modal-body" id="juList">
+                    </div>
+                    <div class="modal-footer">
+						<input id="userNameJu" type="hidden" value="" />
+						<button id="addUJBtn" type="button" class="btn btn-primary btn-block">保存</button>
+                        <button id="closebtn" type="button" class="btn btn-white btn-block" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="/style/js/jquery.min.js"></script>
         <script src="/style/js/bootstrap.min.js"></script>
 		<script src="/style/js/content.min.js"></script>

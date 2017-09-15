@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cr.pmp.annotation.NotLogin;
+import com.cr.pmp.common.annotation.NotLogin;
 import com.cr.pmp.common.base.BaseController;
 import com.cr.pmp.common.dict.SystemDict;
 import com.cr.pmp.common.result.Result;

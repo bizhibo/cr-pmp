@@ -20,10 +20,11 @@
 			<td>$!{user.position}</td>
             <td>$!dateUtils.formatDateTime($!{user.createTime})</td>
             <td>
-				<a href="/user/upd-user-page.do?userName=$!{user.userName}" class="btn btn-info btn-xs">
+				<button onclick="getPermissions('$!{user.userName}');" type="button" class="btn btn-primary btn-xs"><i class="fa fa-mortar-board"></i> 权限</button>
+				<a href="#" onclick="updHtml('$!{user.userName}');" class="btn btn-info btn-xs">
                    <i class="fa fa-paste"></i> 编辑
                 </a>
-				<a href="/user/user-Info.do?userName=$!{user.userName}" class="btn btn-success btn-xs">
+				<a href="#" onclick="infoHtml('$!{user.userName}');" class="btn btn-success btn-xs">
                    <i class="fa fa-eye"></i> 查看
                 </a>
 				<button onclick="del('$!{user.userName}');" type="button" class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> 删除</button>

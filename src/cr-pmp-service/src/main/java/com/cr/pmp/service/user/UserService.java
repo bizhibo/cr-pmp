@@ -1,10 +1,12 @@
 package com.cr.pmp.service.user;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import com.cr.pmp.common.result.Result;
+import com.cr.pmp.model.permissions.UserPermissions;
 import com.cr.pmp.model.user.User;
 
 /**
@@ -40,4 +42,9 @@ public interface UserService {
 	public Result checkPassword(Map<String, Object> params);
 	
 	public Result updUser(User user);
+	
+	public Result queryUserPermissions(String userName);
+	
+	public Result addUserPermissions(List<UserPermissions> userPermissionss,
+			String userName);
 }

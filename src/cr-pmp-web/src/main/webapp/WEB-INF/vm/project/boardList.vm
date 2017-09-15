@@ -1,7 +1,7 @@
 #foreach($board in $boards)
 <li class="boardli">
     <header>
-		<h5>$!{board.name}</h5>
+		<h5>$!{board.name} - $!board.tasks.size()</h5>
 		<div class="ibox-tools">
 			<a class="collapse-link pull-right" onclick="delBoard($!{board.id})" title="删除看板">
                 <i class="fa fa-trash"></i>

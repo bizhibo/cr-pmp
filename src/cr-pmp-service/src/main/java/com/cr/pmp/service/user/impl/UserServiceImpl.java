@@ -1,5 +1,6 @@
 package com.cr.pmp.service.user.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cr.pmp.common.dict.SystemDict;
 import com.cr.pmp.common.result.Result;
@@ -14,7 +16,10 @@ import com.cr.pmp.common.utils.LogUtils;
 import com.cr.pmp.common.utils.PaginatedArrayList;
 import com.cr.pmp.common.utils.PaginatedList;
 import com.cr.pmp.common.utils.SecurityUtils;
+import com.cr.pmp.dao.permissions.PermissionsDao;
 import com.cr.pmp.dao.user.UserDao;
+import com.cr.pmp.model.permissions.Permissions;
+import com.cr.pmp.model.permissions.UserPermissions;
 import com.cr.pmp.model.user.User;
 import com.cr.pmp.service.user.UserService;
 
@@ -23,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private PermissionsDao permissionsDao;
 
 	@Override
 	public Result login(Map<String, Object> params, HttpSession session) {
@@ -32,7 +39,15 @@ public class UserServiceImpl implements UserService {
 			params.put("password", md5PW);
 			User user = userDao.login(params);
 			if (user != null) {
+				Map<String, String> ujMap = new HashMap<String, String>();
+				List<UserPermissions> userPermissionss = permissionsDao
+						.queryPermissionsByUserName(user.getUserName());
+				for (UserPermissions userPermissions : userPermissionss) {
+					ujMap.put(userPermissions.getCode(),
+							userPermissions.getUserName());
+				}
 				session.setAttribute(SystemDict.USERSESSIONKEY, user);
+				session.setAttribute(SystemDict.USERPERMISSIONSKEY, ujMap);
 				session.setMaxInactiveInterval(60 * 120);
 				result.setResultCode(true);
 				result.setMessage("登陆成功!");
@@ -117,19 +132,26 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public Result delUser(String userName) {
 		Result result = new Result();
 		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("userName", userName);
 			Integer flag = userDao.delUser(userName);
+			permissionsDao.delUserPermissions(params);
 			if (flag > 0) {
 				result.setResultCode(true);
 			} else {
 				result.setResultCode(false);
+				throw new RuntimeException(
+						"----- delete Permissions Transactional rollback -----");
 			}
 		} catch (Exception e) {
 			result.setResultCode(false);
 			LogUtils.error(e.getMessage(), e);
+			throw e;
 		}
 		return result;
 	}
@@ -181,6 +203,39 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			result.setResultCode(false);
 			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Override
+	public Result queryUserPermissions(String userName) {
+		Result result = new Result();
+		try {
+			List<Permissions> juList = permissionsDao.queryPermissionsList();
+			List<UserPermissions> ujList = permissionsDao
+					.queryPermissionsByUserName(userName);
+			result.addObject("juList", juList);
+			result.addObject("ujList", ujList);
+		} catch (Exception e) {
+			LogUtils.error(e.getMessage(), e);
+		}
+		return result;
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public Result addUserPermissions(List<UserPermissions> userPermissionss,
+			String userName) {
+		Result result = new Result();
+		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("userName", userName);
+			permissionsDao.delUserPermissions(params);
+			permissionsDao.addUserPermissions(userPermissionss);
+		} catch (Exception e) {
+			result.setResultCode(false);
+			LogUtils.error(e.getMessage(), e);
+			throw e;
 		}
 		return result;
 	}

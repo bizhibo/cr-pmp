@@ -28,7 +28,7 @@ public interface TaskService {
 
 	public Result delSubTask(Integer id);
 
-	public Result querySubTaskByTid(Integer tid);
+	public Result querySubTaskByTid(Map<String, Object> params);
 
 	public Result queryTaskById(Integer id);
 

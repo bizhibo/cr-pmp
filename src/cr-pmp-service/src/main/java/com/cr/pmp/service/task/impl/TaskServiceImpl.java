@@ -17,7 +17,9 @@ import com.cr.pmp.common.result.Result;
 import com.cr.pmp.common.utils.DateUtils;
 import com.cr.pmp.common.utils.ExcelUtils;
 import com.cr.pmp.common.utils.LogUtils;
+import com.cr.pmp.dao.project.ProjectDao;
 import com.cr.pmp.dao.task.TaskDao;
+import com.cr.pmp.model.project.ProjectLeaguer;
 import com.cr.pmp.model.task.SubTask;
 import com.cr.pmp.model.task.Task;
 import com.cr.pmp.model.task.TaskBoard;
@@ -28,6 +30,8 @@ public class TaskServiceImpl implements TaskService {
 
 	@Autowired
 	private TaskDao taskDao;
+	@Autowired
+	private ProjectDao projectDao;
 
 	@Override
 	public Result queryTaskBoardByPid(Map<String, Object> params) {
@@ -35,8 +39,11 @@ public class TaskServiceImpl implements TaskService {
 		try {
 			List<TaskBoard> list = taskDao.queryTaskBoardByPid(Integer
 					.valueOf(params.get("pid").toString()));
+			List<ProjectLeaguer> projectLeaguers = projectDao
+					.queryProjectLeguer(Integer.valueOf(params.get("pid")
+							.toString()));
 			result.addObject("boards", list);
-			result.addObject("pid", params.get("pid"));
+			result.addObject("projectLeaguers", projectLeaguers);
 		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);
 		}
@@ -73,19 +80,46 @@ public class TaskServiceImpl implements TaskService {
 			int i = 2;
 			for (Task task : tasks) {
 				sheet.getRow(i).createCell(1).setCellValue(task.getName());
-				sheet.getRow(i).createCell(2).setCellValue(DateUtils.formatDateTime(task.getStartDate()));
-				sheet.getRow(i).createCell(3).setCellValue(DateUtils.formatDateTime(task.getEndDate()));
-				sheet.getRow(i).createCell(5).setCellValue(DateUtils.getIntervalDays(task.getStartDate(), task.getEndDate()));
-				sheet.getRow(i).createCell(6).setCellValue(task.getPerformerName());
+				sheet.getRow(i)
+						.createCell(2)
+						.setCellValue(
+								DateUtils.formatDateTime(task.getStartDate()));
+				sheet.getRow(i)
+						.createCell(3)
+						.setCellValue(
+								DateUtils.formatDateTime(task.getEndDate()));
+				sheet.getRow(i)
+						.createCell(5)
+						.setCellValue(
+								DateUtils.getIntervalDays(task.getStartDate(),
+										task.getEndDate()));
+				sheet.getRow(i).createCell(6)
+						.setCellValue(task.getPerformerName());
 				sheet.getRow(i).createCell(7).setCellValue(task.getRemarks());
 				i++;
-				for(SubTask subTask : task.getSubTasks()){
-					sheet.getRow(i).createCell(1).setCellValue("	        "+subTask.getName());
-					sheet.getRow(i).createCell(2).setCellValue(DateUtils.formatDateTime(subTask.getStartDate()));
-					sheet.getRow(i).createCell(3).setCellValue(DateUtils.formatDateTime(subTask.getEndDate()));
-					sheet.getRow(i).createCell(5).setCellValue(DateUtils.getIntervalDays(subTask.getStartDate(), subTask.getEndDate()));
-					sheet.getRow(i).createCell(6).setCellValue(subTask.getPerformerName());
-					sheet.getRow(i).createCell(7).setCellValue(subTask.getRemarks());
+				for (SubTask subTask : task.getSubTasks()) {
+					sheet.getRow(i).createCell(1)
+							.setCellValue("	        " + subTask.getName());
+					sheet.getRow(i)
+							.createCell(2)
+							.setCellValue(
+									DateUtils.formatDateTime(subTask
+											.getStartDate()));
+					sheet.getRow(i)
+							.createCell(3)
+							.setCellValue(
+									DateUtils.formatDateTime(subTask
+											.getEndDate()));
+					sheet.getRow(i)
+							.createCell(5)
+							.setCellValue(
+									DateUtils.getIntervalDays(
+											subTask.getStartDate(),
+											subTask.getEndDate()));
+					sheet.getRow(i).createCell(6)
+							.setCellValue(subTask.getPerformerName());
+					sheet.getRow(i).createCell(7)
+							.setCellValue(subTask.getRemarks());
 					i++;
 				}
 			}
@@ -115,19 +149,27 @@ public class TaskServiceImpl implements TaskService {
 		return result;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public Result updTask(Task task) {
 		Result result = new Result();
 		try {
+			SubTask subTask = new SubTask();
+			subTask.setTid(task.getId());
+			subTask.setTbid(task.getTbid());
 			int flag = taskDao.updTask(task);
+			taskDao.updSubTaskTbid(subTask);
 			if (flag > 0) {
 				result.setResultCode(true);
 			} else {
 				result.setResultCode(false);
+				throw new RuntimeException(
+						"----- updTask Transactional rollback -----");
 			}
 		} catch (Exception e) {
 			result.setResultCode(false);
 			LogUtils.error(e.getMessage(), e);
+			throw e;
 		}
 		return result;
 	}
@@ -206,10 +248,15 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Result querySubTaskByTid(Integer tid) {
+	public Result querySubTaskByTid(Map<String, Object> params) {
 		Result result = new Result();
 		try {
-			List<SubTask> subTaskList = taskDao.querySubTaskByTid(tid);
+			List<SubTask> subTaskList = taskDao.querySubTaskByTid(Integer.valueOf(params.get("tid")
+					.toString()));
+			List<ProjectLeaguer> projectLeaguers = projectDao
+					.queryProjectLeguer(Integer.valueOf(params.get("pid")
+							.toString()));
+			result.addObject("projectLeaguers", projectLeaguers);
 			result.addObject("subTaskList", subTaskList);
 		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);

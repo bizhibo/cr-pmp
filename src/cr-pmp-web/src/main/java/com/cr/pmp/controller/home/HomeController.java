@@ -29,4 +29,10 @@ public class HomeController extends BaseController {
 		result.setViewName("/tools");
 		return result;
 	}
+
+	@RequestMapping("/home-page")
+	public Result homePage() {
+		return new Result("/homePage");
+	}
+
 }

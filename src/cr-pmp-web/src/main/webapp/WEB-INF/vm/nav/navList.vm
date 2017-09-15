@@ -2,8 +2,6 @@
     <thead>
         <tr>
             <th>菜单名称</th>
-            <th>菜单等级</th>
-            <th>菜单类型</th>
 			<th>菜单序号</th>
 			<th>菜单图标</th>
             <th>创建时间</th>
@@ -14,14 +12,6 @@
 		#foreach($nav in $pageList)
         <tr>
             <td>$!{nav.name}</td>
-            <td>$!{nav.level}级</td>
-            <td>
-				#if($!{nav.type}=="STATIC")
-					静态菜单
-				#elseif($!{nav.type}=="DYNAMIC")
-					动态菜单
-				#end
-			</td>
 			<td>$!{nav.sequence}</td>
 			<td>
 				<i class="fa fa-$!{nav.icon}"></i> 
@@ -35,6 +25,6 @@
     </tbody>
 </table>
 <div>
-	#set($pageModule = $mainModule.getTarget("/nav/page-list.do").addQueryData("name",$!params.get("name")).addQueryData("level",$!params.get("level")))
+	#set($pageModule = $mainModule.getTarget("/nav/page-list.do").addQueryData("name",$!params.get("name")))
 	#showAjaxPage($pageModule $pageList)
 </div>

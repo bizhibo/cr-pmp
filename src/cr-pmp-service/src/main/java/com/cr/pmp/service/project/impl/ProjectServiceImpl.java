@@ -12,8 +12,10 @@ import com.cr.pmp.common.utils.LogUtils;
 import com.cr.pmp.common.utils.PaginatedArrayList;
 import com.cr.pmp.common.utils.PaginatedList;
 import com.cr.pmp.dao.project.ProjectDao;
+import com.cr.pmp.dao.user.UserDao;
 import com.cr.pmp.model.project.Project;
 import com.cr.pmp.model.project.ProjectLeaguer;
+import com.cr.pmp.model.user.User;
 import com.cr.pmp.service.project.ProjectService;
 
 @Service("projectService")
@@ -21,6 +23,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Autowired
 	private ProjectDao projectDao;
+	@Autowired
+	private UserDao userDao;
 
 	@Override
 	public Result queryProjectPageList(Map<String, Object> params) {
@@ -114,8 +118,9 @@ public class ProjectServiceImpl implements ProjectService {
 		try {
 			List<ProjectLeaguer> projectLeaguers = projectDao
 					.queryProjectLeguer(pid);
+			List<User> users = userDao.queryAllUser();
+			result.addObject("users", users);
 			result.addObject("projectLeaguers", projectLeaguers);
-			result.addObject("pid", pid);
 		} catch (Exception e) {
 			LogUtils.error(e.getMessage(), e);
 		}

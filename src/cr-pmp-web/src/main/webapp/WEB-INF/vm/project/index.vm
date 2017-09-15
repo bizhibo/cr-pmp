@@ -10,6 +10,8 @@
         <link href="/style/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
         <link href="/style/css/animate.min.css" rel="stylesheet"/>
         <link href="/style/css/style.min.css" rel="stylesheet"/>
+		<style type="text/css">
+        </style>
     </head>
     <body class="gray-bg">
         <div class="wrapper wrapper-content animated fadeInUp">
