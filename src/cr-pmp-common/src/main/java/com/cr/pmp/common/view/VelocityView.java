@@ -224,7 +224,8 @@ public class VelocityView extends AbstractTemplateView {
 	protected Context createVelocityContext(Map<String, Object> model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-
+		model.put("request", request);
+		model.put("response", response);
 		return createVelocityContext(model);
 	}
 
