@@ -26,21 +26,21 @@ public class PermissionsInterceptor extends HandlerInterceptorAdapter {
 			PermissionsCode permissionsCode = handlerMethod.getMethod()
 					.getAnnotation(PermissionsCode.class);
 			if (permissionsCode == null) {
-				permissionsCode = handlerMethod.getMethod()
-						.getDeclaringClass()
+				permissionsCode = handlerMethod.getMethod().getDeclaringClass()
 						.getAnnotation(PermissionsCode.class);
 			}
-			if(permissionsCode!=null){
+			if (permissionsCode != null) {
 				String code = permissionsCode.value();
 				Map<String, UserPermissions> ujMap = (Map<String, UserPermissions>) request
-						.getSession().getAttribute(SystemDict.USERPERMISSIONSKEY);
+						.getSession().getAttribute(
+								SystemDict.USERPERMISSIONSKEY);
 				UserPermissions userPermissions = ujMap.get(code);
 				if (userPermissions != null) {
 					return true;
-				}else{
+				} else {
 					return false;
 				}
-			}else{
+			} else {
 				return true;
 			}
 		} catch (Exception e) {
